@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Footer({ onPrivacyClick, onTermsClick, onVisaNavigate }) {
+export default function Footer({ onPrivacyClick, onTermsClick, onVisaNavigate, onPricingClick, onHowItWorksClick, onFeaturesClick }) {
   const currentYear = new Date().getFullYear();
 
   // Prevents jumping to the top of the page for dummy links
@@ -68,17 +68,26 @@ export default function Footer({ onPrivacyClick, onTermsClick, onVisaNavigate })
             <h4 className="footer-title">Nuestros Productos</h4>
             <ul className="footer-links">
               <li>
-                <a href="#planes" onClick={handleDummyClick}>
+                <a 
+                  href="/precios" 
+                  onClick={(e) => { e.preventDefault(); onPricingClick(); }}
+                >
                   Planes y Precios
                 </a>
               </li>
               <li>
-                <a href="#como-funciona" onClick={handleDummyClick}>
+                <a 
+                  href="/como-funciona" 
+                  onClick={(e) => { e.preventDefault(); onHowItWorksClick(); }}
+                >
                   Cómo Funciona
                 </a>
               </li>
               <li>
-                <a href="#caracteristicas" onClick={handleDummyClick}>
+                <a 
+                  href="/caracteristicas" 
+                  onClick={(e) => { e.preventDefault(); onFeaturesClick(); }}
+                >
                   Características
                 </a>
               </li>
