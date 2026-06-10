@@ -57,7 +57,7 @@ export default function PrivacyPage({ onBack }) {
               2. Tipos de Datos Recolectados y Naturaleza del Servicio
             </h3>
             <p style={{ fontSize: '14px', color: '#475569', lineHeight: '1.7', marginBottom: '8px' }}>
-              Visazo Pro es una plataforma independiente de asesoría consular orientada a facilitar los procesos de obtención y renovación de la visa americana B1/B2, de estudiante (F1/M1), de trabajo y otros casos especiales. Llevamos a cabo este fin mediante dos modalidades: guiando en el proceso a nuestros clientes, o ejecutándolo por ellos bajo expresa delegación (servicios de diligenciamiento del Formulario DS-160 y agendamiento de citas consulares).
+              Visazo Pro es una plataforma independiente de asesoría consular orientada a facilitar los procesos de obtención y renovación de la visa americana B1/B2, de estudiante (F1/M1), de trabajo y otros casos especiales. Llevamos a cabo este fin mediante dos modalidades: guiando en el proceso a nuestros clientes, o ejecutándolo por ellos bajo expresa delegación (servicios de diligenciamiento del Formulario DS-160 y agendamiento de citas consulares y/o servicios logísticos).
             </p>
             <p style={{ fontSize: '14px', color: '#475569', lineHeight: '1.7' }}>
               Para cumplir con este propósito, recolectamos datos personales de identificación (nombre completo, correo electrónico, número de WhatsApp) y datos de evaluación socioeconómica y migratoria (edad, estado civil, ingresos, propiedades, dependientes, ocupación laboral, intenciones de viaje e historial de visado y viajes anteriores).
@@ -118,7 +118,7 @@ export default function PrivacyPage({ onBack }) {
               6. Procedimiento para el Ejercicio de tus Derechos
             </h3>
             <p style={{ fontSize: '14px', color: '#475569', lineHeight: '1.7', marginBottom: '8px' }}>
-              Podrás ejercer tus derechos enviando una comunicación al correo <strong>soporte@visazopro.com</strong> indicando tu nombre completo, número de documento y el derecho que deseas ejercer (consulta, actualización, rectificación, supresión o revocación).
+              Podrás ejercer tus derechos enviando una comunicación al correo <strong>visazopro@gmail.com</strong> indicando tu nombre completo, número de documento y el derecho que deseas ejercer (consulta, actualización, rectificación, supresión o revocación).
             </p>
             <p style={{ fontSize: '14px', color: '#475569', lineHeight: '1.7' }}>
               <strong>Tiempos de respuesta (Ley 1581):</strong> Las <em>Consultas</em> se resolverán en un plazo máximo de diez (10) días hábiles, prorrogable por ese mismo término previo aviso. Los <em>Reclamos</em> (corrección, supresión o revocatoria) contarán con un plazo máximo de quince (15) días hábiles, prorrogable por ocho (8) días hábiles adicionales cuando las circunstancias lo requieran.
