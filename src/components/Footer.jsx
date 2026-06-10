@@ -19,7 +19,7 @@ export default function Footer({ onPrivacyClick, onTermsClick, onVisaNavigate })
               <span className="ln">Visazo <strong>Pro</strong></span>
             </div>
             <p className="footer-desc">
-              Visasoft Pro: Diagnóstico inteligente y asesoría consular de alto nivel para asegurar el éxito de tu visa americana.
+              Visazo Pro: Diagnóstico inteligente y asesoría consular de alto nivel para asegurar el éxito de tu visa americana.
             </p>
           </div>
 

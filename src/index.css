@@ -2150,7 +2150,7 @@ body {
   line-height: 1.65;
 }
 
-/* RESPONSIVE DESIGN overrides */
+/* RESPONSIVE DESIGN (Full responsive) */
 @media (max-width: 900px) {
   .site-footer {
     margin-top: 60px;
