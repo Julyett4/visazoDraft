@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { PLANES } from '../data/db';
 
 export default function PlanModal({ isOpen, planKey, onClose, onConfirm }) {

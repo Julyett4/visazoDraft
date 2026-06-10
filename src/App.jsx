@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DB, PROG, PLANES } from './data/db';
 import { guardarEnSupabase } from './services/supabase';
 
@@ -11,6 +11,8 @@ import AutorizacionStep from './components/AutorizacionStep';
 import ResultScreen from './components/ResultScreen';
 import PlanModal from './components/PlanModal';
 import RenovAlertModal from './components/RenovAlertModal';
+import PrivacyPage from './components/PrivacyPage';
+import TermsPage from './components/TermsPage';
 
 // Helper for generating custom IDs
 function uid() {
@@ -38,6 +40,58 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [renovAlertOpen, setRenovAlertOpen] = useState(false);
   const [activePlanKey, setActivePlanKey] = useState(null);
+
+  const [showPrivacy, setShowPrivacy] = useState(
+    window.location.pathname === '/privacidad' || 
+    window.location.hash === '#privacy' || 
+    window.location.hash === '#/privacidad'
+  );
+
+  const [showTerms, setShowTerms] = useState(
+    window.location.pathname === '/terminos' || 
+    window.location.hash === '#terms' || 
+    window.location.hash === '#/terminos'
+  );
+
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const isPriv = window.location.pathname === '/privacidad' || 
+                     window.location.hash === '#privacy' || 
+                     window.location.hash === '#/privacidad';
+      setShowPrivacy(isPriv);
+
+      const isTerms = window.location.pathname === '/terminos' || 
+                      window.location.hash === '#terms' || 
+                      window.location.hash === '#/terminos';
+      setShowTerms(isTerms);
+    };
+    window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
+    };
+  }, []);
+
+  const handlePrivacyBack = () => {
+    const hasHistory = window.history.state !== null;
+    if (!hasHistory) {
+      window.history.pushState(null, '', '/');
+      setShowPrivacy(false);
+    } else {
+      window.history.back();
+    }
+  };
+
+  const handleTermsBack = () => {
+    const hasHistory = window.history.state !== null;
+    if (!hasHistory) {
+      window.history.pushState(null, '', '/');
+      setShowTerms(false);
+    } else {
+      window.history.back();
+    }
+  };
 
   // Navigation handlers
   const gotoStep = (nextStep) => {
@@ -402,48 +456,64 @@ export default function App() {
   };
 
   const progress = PROG[step] || { lbl: '', pct: 0 };
-  const showProgressBar = step !== 'welcome';
+  const showProgressBar = step !== 'welcome' && !showPrivacy && !showTerms;
 
   return (
     <>
       <div className="orb orb1"></div>
       <div className="orb orb2"></div>
 
-      <div id="app">
-        <header id="hdr">
-          <div className="logo">
-            <div className="lm">VP</div>
-            <span className="ln">Visazo <strong>Pro</strong></span>
-          </div>
-          <div className="hbadge">🔒 Diagnóstico confidencial</div>
-        </header>
-
-        <div id="card">
-          {showProgressBar && (
-            <div id="pbar-wrap" style={{ display: 'block' }}>
-              <div className="ptrack">
-                <div 
-                  className="pfill" 
-                  id="pfill" 
-                  style={{ width: `${progress.pct}%` }}
-                ></div>
-              </div>
-              <div className="pmeta">
-                <span className="plbl" id="plbl">{progress.lbl}</span>
-                <span className="ppct" id="ppct">{progress.pct}%</span>
-              </div>
+      {showPrivacy ? (
+        <PrivacyPage onBack={handlePrivacyBack} />
+      ) : showTerms ? (
+        <TermsPage onBack={handleTermsBack} />
+      ) : (
+        <div id="app">
+          <header id="hdr">
+            <div className="logo">
+              <div className="lm">VP</div>
+              <span className="ln">Visazo <strong>Pro</strong></span>
             </div>
-          )}
+            <div className="hbadge">🔒 Diagnóstico confidencial</div>
+          </header>
 
-          <div id="sw">
-            {renderStepContent()}
+          <div id="card">
+            {showProgressBar && (
+              <div id="pbar-wrap" style={{ display: 'block' }}>
+                <div className="ptrack">
+                  <div 
+                    className="pfill" 
+                    id="pfill" 
+                    style={{ width: `${progress.pct}%` }}
+                  ></div>
+                </div>
+                <div className="pmeta">
+                  <span className="plbl" id="plbl">{progress.lbl}</span>
+                  <span className="ppct" id="ppct">{progress.pct}%</span>
+                </div>
+              </div>
+            )}
+
+            <div id="sw">
+              {renderStepContent()}
+            </div>
+          </div>
+
+          <div className="footer">
+            © 2025 Visazo Pro · Asesoría consular profesional · <a href="/privacidad" onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState({ isPrivacy: true }, '', '/privacidad');
+              setShowPrivacy(true);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}>Política de privacidad</a> · <a href="/terminos" onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState({ isTerms: true }, '', '/terminos');
+              setShowTerms(true);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}>Términos y condiciones</a>
           </div>
         </div>
-
-        <div className="footer">
-          © 2025 Visazo Pro · Asesoría consular profesional · <a href="#privacy">Política de privacidad</a>
-        </div>
-      </div>
+      )}
 
       {/* Loading Overlay */}
       <div id="loverlay" className={loading ? 'show' : ''}>

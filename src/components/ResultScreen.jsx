@@ -1,4 +1,3 @@
-import React from 'react';
 import { PLANES } from '../data/db';
 
 export default function ResultScreen({ sol, onOpenPlanModal, onReset }) {

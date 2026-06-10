@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function RenovAlertModal({ isOpen, onConfirm }) {
   if (!isOpen) return null;
