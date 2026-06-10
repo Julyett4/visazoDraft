@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function AutorizacionStep({ onNext, onBack }) {
   const [datosChecked, setDatosChecked] = useState(false);
@@ -33,7 +33,20 @@ export default function AutorizacionStep({ onNext, onBack }) {
             onChange={(e) => e.stopPropagation()}
           />
           <span className="cht">
-            Autorizo el tratamiento de mis datos personales conforme a la Ley 1581 de 2012 y la política de privacidad de Visazo Pro.
+            Autorizo el tratamiento de mis datos personales conforme a la Ley 1581 de 2012 y la{' '}
+            <a 
+              href="/privacidad" 
+              style={{ color: 'var(--blue)', textDecoration: 'underline', fontWeight: '600' }} 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.history.pushState({ isPrivacy: true }, '', '/privacidad');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              política de privacidad de Visazo Pro
+            </a>.
           </span>
         </label>
 

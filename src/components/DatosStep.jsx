@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function DatosStep({ initialValues, onNext, onBack }) {
   const [nombre, setNombre] = useState(initialValues.nombreCompleto || '');

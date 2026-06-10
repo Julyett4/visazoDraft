@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DB, PROG, PLANES } from './data/db';
 import { guardarEnSupabase } from './services/supabase';
 
@@ -11,6 +11,7 @@ import AutorizacionStep from './components/AutorizacionStep';
 import ResultScreen from './components/ResultScreen';
 import PlanModal from './components/PlanModal';
 import RenovAlertModal from './components/RenovAlertModal';
+import PrivacyPage from './components/PrivacyPage';
 
 // Helper for generating custom IDs
 function uid() {
@@ -38,6 +39,37 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [renovAlertOpen, setRenovAlertOpen] = useState(false);
   const [activePlanKey, setActivePlanKey] = useState(null);
+
+  const [showPrivacy, setShowPrivacy] = useState(
+    window.location.pathname === '/privacidad' || 
+    window.location.hash === '#privacy' || 
+    window.location.hash === '#/privacidad'
+  );
+
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const isPriv = window.location.pathname === '/privacidad' || 
+                     window.location.hash === '#privacy' || 
+                     window.location.hash === '#/privacidad';
+      setShowPrivacy(isPriv);
+    };
+    window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
+    };
+  }, []);
+
+  const handlePrivacyBack = () => {
+    const hasHistory = window.history.state !== null;
+    if (!hasHistory) {
+      window.history.pushState(null, '', '/');
+      setShowPrivacy(false);
+    } else {
+      window.history.back();
+    }
+  };
 
   // Navigation handlers
   const gotoStep = (nextStep) => {
@@ -402,7 +434,7 @@ export default function App() {
   };
 
   const progress = PROG[step] || { lbl: '', pct: 0 };
-  const showProgressBar = step !== 'welcome';
+  const showProgressBar = step !== 'welcome' && !showPrivacy;
 
   return (
     <>
@@ -436,12 +468,21 @@ export default function App() {
           )}
 
           <div id="sw">
-            {renderStepContent()}
+            {showPrivacy ? (
+              <PrivacyPage onBack={handlePrivacyBack} />
+            ) : (
+              renderStepContent()
+            )}
           </div>
         </div>
 
         <div className="footer">
-          © 2025 Visazo Pro · Asesoría consular profesional · <a href="#privacy">Política de privacidad</a>
+          © 2025 Visazo Pro · Asesoría consular profesional · <a href="/privacidad" onClick={(e) => {
+            e.preventDefault();
+            window.history.pushState({ isPrivacy: true }, '', '/privacidad');
+            setShowPrivacy(true);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}>Política de privacidad</a>
         </div>
       </div>
 
