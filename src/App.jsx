@@ -13,6 +13,7 @@ import PlanModal from './components/PlanModal';
 import RenovAlertModal from './components/RenovAlertModal';
 import PrivacyPage from './components/PrivacyPage';
 import TermsPage from './components/TermsPage';
+import Footer from './components/Footer';
 
 // Helper for generating custom IDs
 function uid() {
@@ -468,51 +469,51 @@ export default function App() {
       ) : showTerms ? (
         <TermsPage onBack={handleTermsBack} />
       ) : (
-        <div id="app">
-          <header id="hdr">
-            <div className="logo">
-              <div className="lm">VP</div>
-              <span className="ln">Visazo <strong>Pro</strong></span>
-            </div>
-            <div className="hbadge">🔒 Diagnóstico confidencial</div>
-          </header>
-
-          <div id="card">
-            {showProgressBar && (
-              <div id="pbar-wrap" style={{ display: 'block' }}>
-                <div className="ptrack">
-                  <div 
-                    className="pfill" 
-                    id="pfill" 
-                    style={{ width: `${progress.pct}%` }}
-                  ></div>
-                </div>
-                <div className="pmeta">
-                  <span className="plbl" id="plbl">{progress.lbl}</span>
-                  <span className="ppct" id="ppct">{progress.pct}%</span>
-                </div>
+        <>
+          <div id="app">
+            <header id="hdr">
+              <div className="logo">
+                <div className="lm">VP</div>
+                <span className="ln">Visazo <strong>Pro</strong></span>
               </div>
-            )}
+              <div className="hbadge">🔒 Diagnóstico confidencial</div>
+            </header>
 
-            <div id="sw">
-              {renderStepContent()}
+            <div id="card">
+              {showProgressBar && (
+                <div id="pbar-wrap" style={{ display: 'block' }}>
+                  <div className="ptrack">
+                    <div 
+                      className="pfill" 
+                      id="pfill" 
+                      style={{ width: `${progress.pct}%` }}
+                    ></div>
+                  </div>
+                  <div className="pmeta">
+                    <span className="plbl" id="plbl">{progress.lbl}</span>
+                    <span className="ppct" id="ppct">{progress.pct}%</span>
+                  </div>
+                </div>
+              )}
+
+              <div id="sw">
+                {renderStepContent()}
+              </div>
             </div>
           </div>
-
-          <div className="footer">
-            © 2025 Visazo Pro · Asesoría consular profesional · <a href="/privacidad" onClick={(e) => {
-              e.preventDefault();
+          <Footer
+            onPrivacyClick={() => {
               window.history.pushState({ isPrivacy: true }, '', '/privacidad');
               setShowPrivacy(true);
               window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}>Política de privacidad</a> · <a href="/terminos" onClick={(e) => {
-              e.preventDefault();
+            }}
+            onTermsClick={() => {
               window.history.pushState({ isTerms: true }, '', '/terminos');
               setShowTerms(true);
               window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}>Términos y condiciones</a>
-          </div>
-        </div>
+            }}
+          />
+        </>
       )}
 
       {/* Loading Overlay */}
