@@ -17,6 +17,10 @@ import Footer from './components/Footer';
 import VisasHub from './components/VisasHub';
 import VisaDetail from './components/VisaDetail';
 import { VISAS_DATA } from './data/visasData';
+import PricingPage from './components/PricingPage';
+import HowItWorksPage from './components/HowItWorksPage';
+import FeaturesPage from './components/FeaturesPage';
+
 
 // Helper for generating custom IDs
 function uid() {
@@ -57,6 +61,25 @@ export default function App() {
     window.location.hash === '#/terminos'
   );
 
+  const [showPricing, setShowPricing] = useState(
+    window.location.pathname === '/precios' || 
+    window.location.hash === '#planes' || 
+    window.location.hash === '#/precios' ||
+    window.location.hash === '#/planes'
+  );
+
+  const [showHowItWorks, setShowHowItWorks] = useState(
+    window.location.pathname === '/como-funciona' || 
+    window.location.hash === '#como-funciona' || 
+    window.location.hash === '#/como-funciona'
+  );
+
+  const [showFeatures, setShowFeatures] = useState(
+    window.location.pathname === '/caracteristicas' || 
+    window.location.hash === '#caracteristicas' || 
+    window.location.hash === '#/caracteristicas'
+  );
+
   const getVisaRouteFromUrl = () => {
     const path = window.location.pathname;
     const hash = window.location.hash;
@@ -84,6 +107,22 @@ export default function App() {
                       window.location.hash === '#terms' || 
                       window.location.hash === '#/terminos';
       setShowTerms(isTerms);
+
+      const isPricing = window.location.pathname === '/precios' || 
+                        window.location.hash === '#planes' || 
+                        window.location.hash === '#/precios' ||
+                        window.location.hash === '#/planes';
+      setShowPricing(isPricing);
+
+      const isHow = window.location.pathname === '/como-funciona' || 
+                    window.location.hash === '#como-funciona' || 
+                    window.location.hash === '#/como-funciona';
+      setShowHowItWorks(isHow);
+
+      const isFeat = window.location.pathname === '/caracteristicas' || 
+                     window.location.hash === '#caracteristicas' || 
+                     window.location.hash === '#/caracteristicas';
+      setShowFeatures(isFeat);
 
       setVisaRoute(getVisaRouteFromUrl());
     };
@@ -113,6 +152,40 @@ export default function App() {
     } else {
       window.history.back();
     }
+  };
+
+  const handlePricingBack = () => {
+    const hasHistory = window.history.state !== null;
+    if (!hasHistory) {
+      window.history.pushState(null, '', '/');
+      setShowPricing(false);
+    } else {
+      window.history.back();
+    }
+  };
+
+  const handleHowItWorksBack = () => {
+    const hasHistory = window.history.state !== null;
+    if (!hasHistory) {
+      window.history.pushState(null, '', '/');
+      setShowHowItWorks(false);
+    } else {
+      window.history.back();
+    }
+  };
+
+  const handleFeaturesBack = () => {
+    const hasHistory = window.history.state !== null;
+    if (!hasHistory) {
+      window.history.pushState(null, '', '/');
+      setShowFeatures(false);
+    } else {
+      window.history.back();
+    }
+  };
+
+  const handleSelectPlanFromPricing = (planKey) => {
+    setActivePlanKey(planKey);
   };
 
   // Navigation handlers
@@ -478,7 +551,7 @@ export default function App() {
   };
 
   const progress = PROG[step] || { lbl: '', pct: 0 };
-  const showProgressBar = step !== 'welcome' && !showPrivacy && !showTerms;
+  const showProgressBar = step !== 'welcome' && !showPrivacy && !showTerms && !showPricing && !showHowItWorks && !showFeatures;
 
   // Navigation callbacks for Visas Americanas
   const handleHomeClick = () => {
@@ -486,6 +559,9 @@ export default function App() {
     setVisaRoute(null);
     setShowPrivacy(false);
     setShowTerms(false);
+    setShowPricing(false);
+    setShowHowItWorks(false);
+    setShowFeatures(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -494,6 +570,9 @@ export default function App() {
     setVisaRoute('hub');
     setShowPrivacy(false);
     setShowTerms(false);
+    setShowPricing(false);
+    setShowHowItWorks(false);
+    setShowFeatures(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -502,6 +581,9 @@ export default function App() {
     setVisaRoute(routeKey);
     setShowPrivacy(false);
     setShowTerms(false);
+    setShowPricing(false);
+    setShowHowItWorks(false);
+    setShowFeatures(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -512,6 +594,9 @@ export default function App() {
     setVisaRoute(null);
     setShowPrivacy(false);
     setShowTerms(false);
+    setShowPricing(false);
+    setShowHowItWorks(false);
+    setShowFeatures(false);
     window.history.pushState(null, '', '/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -527,6 +612,15 @@ export default function App() {
     } else if (showTerms) {
       title = 'Términos y Condiciones | Visazo Pro';
       description = 'Términos de servicio, disclaimer de asesoría consular y condiciones de uso de la plataforma Visazo Pro.';
+    } else if (showPricing) {
+      title = 'Planes y Precios | Visazo Pro';
+      description = 'Planes de suscripción y servicios de asesoría consular para visa americana.';
+    } else if (showHowItWorks) {
+      title = 'Cómo Funciona | Visazo Pro';
+      description = 'Conoce el proceso de 5 pasos para diligenciar tu formulario DS-160 y prepararte para tu entrevista de visa.';
+    } else if (showFeatures) {
+      title = 'Características de nuestro sistema | Visazo Pro';
+      description = 'Las ventajas tecnológicas y legales de preparar tu visa con Visazo Pro.';
     } else if (visaRoute === 'hub') {
       title = 'Categorías de Visas Americanas | Visazo Pro';
       description = 'Información oficial sobre visas de turismo, estudiante y trabajo para Estados Unidos. Requisitos y aranceles consulares.';
@@ -543,7 +637,7 @@ export default function App() {
     if (descMeta) {
       descMeta.setAttribute('content', description);
     }
-  }, [showPrivacy, showTerms, visaRoute]);
+  }, [showPrivacy, showTerms, showPricing, showHowItWorks, showFeatures, visaRoute]);
 
   return (
     <>
@@ -556,69 +650,117 @@ export default function App() {
         <PrivacyPage onBack={handlePrivacyBack} />
       ) : showTerms ? (
         <TermsPage onBack={handleTermsBack} />
+      ) : showPricing ? (
+        <PricingPage 
+          onBack={handlePricingBack} 
+          onSelectPlan={handleSelectPlanFromPricing}
+          onStartDiagnostic={handleStartForVisa}
+        />
+      ) : showHowItWorks ? (
+        <HowItWorksPage 
+          onBack={handleHowItWorksBack}
+          onStartDiagnostic={handleStartForVisa}
+        />
+      ) : showFeatures ? (
+        <FeaturesPage 
+          onBack={handleFeaturesBack}
+          onStartDiagnostic={handleStartForVisa}
+        />
+      ) : visaRoute === 'hub' ? (
+        <VisasHub 
+          onNavigate={handleVisaNavigate} 
+          onHomeClick={handleHomeClick} 
+          onStartDiagnostic={handleStartForVisa}
+        />
+      ) : (visaRoute && VISAS_DATA[visaRoute]) ? (
+        <VisaDetail 
+          visa={VISAS_DATA[visaRoute]}
+          onHomeClick={handleHomeClick}
+          onHubClick={handleHubClick}
+          onStartDiagnostic={handleStartForVisa}
+        />
       ) : (
-        <>
-          {visaRoute === 'hub' ? (
-            <VisasHub 
-              onNavigate={handleVisaNavigate} 
-              onHomeClick={handleHomeClick} 
-              onStartDiagnostic={handleStartForVisa}
-            />
-          ) : (visaRoute && VISAS_DATA[visaRoute]) ? (
-            <VisaDetail 
-              visa={VISAS_DATA[visaRoute]}
-              onHomeClick={handleHomeClick}
-              onHubClick={handleHubClick}
-              onStartDiagnostic={handleStartForVisa}
-            />
-          ) : (
-            <div id="app">
-              <header id="hdr">
-                <div className="logo">
-                  <div className="lm">VP</div>
-                  <span className="ln">Visazo <strong>Pro</strong></span>
+        <div id="app">
+          <header id="hdr">
+            <div className="logo">
+              <div className="lm">VP</div>
+              <span className="ln">Visazo <strong>Pro</strong></span>
+            </div>
+            <div className="hbadge">🔒 Diagnóstico confidencial</div>
+          </header>
+
+          <div id="card">
+            {showProgressBar && (
+              <div id="pbar-wrap" style={{ display: 'block' }}>
+                <div className="ptrack">
+                  <div 
+                    className="pfill" 
+                    id="pfill" 
+                    style={{ width: `${progress.pct}%` }}
+                  ></div>
                 </div>
-                <div className="hbadge">🔒 Diagnóstico confidencial</div>
-              </header>
-
-              <div id="card">
-                {showProgressBar && (
-                  <div id="pbar-wrap" style={{ display: 'block' }}>
-                    <div className="ptrack">
-                      <div 
-                        className="pfill" 
-                        id="pfill" 
-                        style={{ width: `${progress.pct}%` }}
-                      ></div>
-                    </div>
-                    <div className="pmeta">
-                      <span className="plbl" id="plbl">{progress.lbl}</span>
-                      <span className="ppct" id="ppct">{progress.pct}%</span>
-                    </div>
-                  </div>
-                )}
-
-                <div id="sw">
-                  {renderStepContent()}
+                <div className="pmeta">
+                  <span className="plbl" id="plbl">{progress.lbl}</span>
+                  <span className="ppct" id="ppct">{progress.pct}%</span>
                 </div>
               </div>
+            )}
+
+            <div id="sw">
+              {renderStepContent()}
             </div>
-          )}
-          <Footer
-            onPrivacyClick={() => {
-              window.history.pushState({ isPrivacy: true }, '', '/privacidad');
-              setShowPrivacy(true);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            onTermsClick={() => {
-              window.history.pushState({ isTerms: true }, '', '/terminos');
-              setShowTerms(true);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            onVisaNavigate={handleVisaNavigate}
-          />
-        </>
+          </div>
+        </div>
       )}
+
+      <Footer
+        onPrivacyClick={() => {
+          window.history.pushState({ isPrivacy: true }, '', '/privacidad');
+          setShowPrivacy(true);
+          setShowTerms(false);
+          setShowPricing(false);
+          setShowHowItWorks(false);
+          setShowFeatures(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onTermsClick={() => {
+          window.history.pushState({ isTerms: true }, '', '/terminos');
+          setShowPrivacy(false);
+          setShowTerms(true);
+          setShowPricing(false);
+          setShowHowItWorks(false);
+          setShowFeatures(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onPricingClick={() => {
+          window.history.pushState({ isPricing: true }, '', '/precios');
+          setShowPrivacy(false);
+          setShowTerms(false);
+          setShowPricing(true);
+          setShowHowItWorks(false);
+          setShowFeatures(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onHowItWorksClick={() => {
+          window.history.pushState({ isHow: true }, '', '/como-funciona');
+          setShowPrivacy(false);
+          setShowTerms(false);
+          setShowPricing(false);
+          setShowHowItWorks(true);
+          setShowFeatures(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onFeaturesClick={() => {
+          window.history.pushState({ isFeat: true }, '', '/caracteristicas');
+          setShowPrivacy(false);
+          setShowTerms(false);
+          setShowPricing(false);
+          setShowHowItWorks(false);
+          setShowFeatures(true);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onVisaNavigate={handleVisaNavigate}
+      />
 
       {/* Loading Overlay */}
       <div id="loverlay" className={loading ? 'show' : ''}>

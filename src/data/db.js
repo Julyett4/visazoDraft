@@ -77,6 +77,7 @@ export const PLANES = {
   },
 };
 
+
 export const DB = {
   opciones: {
     tipoTramite: [
