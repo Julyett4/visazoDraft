@@ -1,12 +1,19 @@
 import React from 'react';
 
-export default function Footer({ onPrivacyClick, onTermsClick, onVisaNavigate, onPricingClick, onHowItWorksClick, onFeaturesClick }) {
+export default function Footer({ 
+  onPrivacyClick, 
+  onTermsClick, 
+  onVisaNavigate, 
+  onPricingClick, 
+  onHowItWorksClick, 
+  onFeaturesClick,
+  onBlogClick,
+  onHelpClick,
+  onAboutClick,
+  onContactClick,
+  onJobsClick
+}) {
   const currentYear = new Date().getFullYear();
-
-  // Prevents jumping to the top of the page for dummy links
-  const handleDummyClick = (e) => {
-    e.preventDefault();
-  };
 
   return (
     <footer className="site-footer">
@@ -99,27 +106,27 @@ export default function Footer({ onPrivacyClick, onTermsClick, onVisaNavigate, o
             <h4 className="footer-title">Recursos</h4>
             <ul className="footer-links">
               <li>
-                <a href="#blog" onClick={handleDummyClick}>
+                <a href="#blog" onClick={(e) => { e.preventDefault(); onBlogClick(); }}>
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#ayuda" onClick={handleDummyClick}>
+                <a href="#ayuda" onClick={(e) => { e.preventDefault(); onHelpClick(); }}>
                   Centro de Ayuda
                 </a>
               </li>
               <li>
-                <a href="#nosotros" onClick={handleDummyClick}>
+                <a href="#nosotros" onClick={(e) => { e.preventDefault(); onAboutClick(); }}>
                   Acerca de
                 </a>
               </li>
               <li>
-                <a href="#contacto" onClick={handleDummyClick}>
+                <a href="#contacto" onClick={(e) => { e.preventDefault(); onContactClick(); }}>
                   Contacto
                 </a>
               </li>
               <li>
-                <a href="#empleos" onClick={handleDummyClick}>
+                <a href="#empleos" onClick={(e) => { e.preventDefault(); onJobsClick(); }}>
                   Empleos
                 </a>
               </li>
