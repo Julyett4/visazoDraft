@@ -14,6 +14,9 @@ import RenovAlertModal from './components/RenovAlertModal';
 import PrivacyPage from './components/PrivacyPage';
 import TermsPage from './components/TermsPage';
 import Footer from './components/Footer';
+import VisasHub from './components/VisasHub';
+import VisaDetail from './components/VisaDetail';
+import { VISAS_DATA } from './data/visasData';
 
 // Helper for generating custom IDs
 function uid() {
@@ -54,6 +57,22 @@ export default function App() {
     window.location.hash === '#/terminos'
   );
 
+  const getVisaRouteFromUrl = () => {
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    if (path === '/visas') return 'hub';
+    if (path === '/visas/turismo') return 'turismo';
+    if (path === '/visas/estudiante') return 'estudiante';
+    if (path === '/visas/trabajo') return 'trabajo';
+    if (hash === '#visas' || hash === '#/visas') return 'hub';
+    if (hash === '#visas/turismo' || hash === '#/visas/turismo') return 'turismo';
+    if (hash === '#visas/estudiante' || hash === '#/visas/estudiante') return 'estudiante';
+    if (hash === '#visas/trabajo' || hash === '#/visas/trabajo') return 'trabajo';
+    return null;
+  };
+
+  const [visaRoute, setVisaRoute] = useState(getVisaRouteFromUrl());
+
   useEffect(() => {
     const handleUrlChange = () => {
       const isPriv = window.location.pathname === '/privacidad' || 
@@ -65,6 +84,8 @@ export default function App() {
                       window.location.hash === '#terms' || 
                       window.location.hash === '#/terminos';
       setShowTerms(isTerms);
+
+      setVisaRoute(getVisaRouteFromUrl());
     };
     window.addEventListener('popstate', handleUrlChange);
     window.addEventListener('hashchange', handleUrlChange);
@@ -459,10 +480,77 @@ export default function App() {
   const progress = PROG[step] || { lbl: '', pct: 0 };
   const showProgressBar = step !== 'welcome' && !showPrivacy && !showTerms;
 
+  // Navigation callbacks for Visas Americanas
+  const handleHomeClick = () => {
+    window.history.pushState(null, '', '/');
+    setVisaRoute(null);
+    setShowPrivacy(false);
+    setShowTerms(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleHubClick = () => {
+    window.history.pushState(null, '', '/visas');
+    setVisaRoute('hub');
+    setShowPrivacy(false);
+    setShowTerms(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleVisaNavigate = (routeKey) => {
+    window.history.pushState(null, '', `/visas/${routeKey}`);
+    setVisaRoute(routeKey);
+    setShowPrivacy(false);
+    setShowTerms(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleStartForVisa = (category) => {
+    setFd({ tipoTramite: category });
+    setHistory([]);
+    setStep('datos-personales');
+    setVisaRoute(null);
+    setShowPrivacy(false);
+    setShowTerms(false);
+    window.history.pushState(null, '', '/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Dynamic SEO meta-tags updater
+  useEffect(() => {
+    let title = 'Evaluador de Viabilidad Consular | Visazo Pro';
+    let description = 'Diagnóstico inteligente para visa americana. Evalúa tu perfil consular en minutos con nuestra herramienta de asesoría legal de alto nivel.';
+
+    if (showPrivacy) {
+      title = 'Política de Privacidad | Visazo Pro';
+      description = 'Políticas de confidencialidad, protección de datos personales y términos legales de Visazo Pro.';
+    } else if (showTerms) {
+      title = 'Términos y Condiciones | Visazo Pro';
+      description = 'Términos de servicio, disclaimer de asesoría consular y condiciones de uso de la plataforma Visazo Pro.';
+    } else if (visaRoute === 'hub') {
+      title = 'Categorías de Visas Americanas | Visazo Pro';
+      description = 'Información oficial sobre visas de turismo, estudiante y trabajo para Estados Unidos. Requisitos y aranceles consulares.';
+    } else if (visaRoute && VISAS_DATA[visaRoute]) {
+      const v = VISAS_DATA[visaRoute];
+      title = v.seoTitle;
+      description = v.seoDescription;
+    }
+
+    document.title = title;
+    
+    // Update meta description
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) {
+      descMeta.setAttribute('content', description);
+    }
+  }, [showPrivacy, showTerms, visaRoute]);
+
   return (
     <>
-      <div className="orb orb1"></div>
-      <div className="orb orb2"></div>
+      <div className="orb-wrapper">
+        <div className="orb orb1"></div>
+        <div className="orb orb2"></div>
+      </div>
 
       {showPrivacy ? (
         <PrivacyPage onBack={handlePrivacyBack} />
@@ -470,37 +558,52 @@ export default function App() {
         <TermsPage onBack={handleTermsBack} />
       ) : (
         <>
-          <div id="app">
-            <header id="hdr">
-              <div className="logo">
-                <div className="lm">VP</div>
-                <span className="ln">Visazo <strong>Pro</strong></span>
-              </div>
-              <div className="hbadge">🔒 Diagnóstico confidencial</div>
-            </header>
-
-            <div id="card">
-              {showProgressBar && (
-                <div id="pbar-wrap" style={{ display: 'block' }}>
-                  <div className="ptrack">
-                    <div 
-                      className="pfill" 
-                      id="pfill" 
-                      style={{ width: `${progress.pct}%` }}
-                    ></div>
-                  </div>
-                  <div className="pmeta">
-                    <span className="plbl" id="plbl">{progress.lbl}</span>
-                    <span className="ppct" id="ppct">{progress.pct}%</span>
-                  </div>
+          {visaRoute === 'hub' ? (
+            <VisasHub 
+              onNavigate={handleVisaNavigate} 
+              onHomeClick={handleHomeClick} 
+              onStartDiagnostic={handleStartForVisa}
+            />
+          ) : (visaRoute && VISAS_DATA[visaRoute]) ? (
+            <VisaDetail 
+              visa={VISAS_DATA[visaRoute]}
+              onHomeClick={handleHomeClick}
+              onHubClick={handleHubClick}
+              onStartDiagnostic={handleStartForVisa}
+            />
+          ) : (
+            <div id="app">
+              <header id="hdr">
+                <div className="logo">
+                  <div className="lm">VP</div>
+                  <span className="ln">Visazo <strong>Pro</strong></span>
                 </div>
-              )}
+                <div className="hbadge">🔒 Diagnóstico confidencial</div>
+              </header>
 
-              <div id="sw">
-                {renderStepContent()}
+              <div id="card">
+                {showProgressBar && (
+                  <div id="pbar-wrap" style={{ display: 'block' }}>
+                    <div className="ptrack">
+                      <div 
+                        className="pfill" 
+                        id="pfill" 
+                        style={{ width: `${progress.pct}%` }}
+                      ></div>
+                    </div>
+                    <div className="pmeta">
+                      <span className="plbl" id="plbl">{progress.lbl}</span>
+                      <span className="ppct" id="ppct">{progress.pct}%</span>
+                    </div>
+                  </div>
+                )}
+
+                <div id="sw">
+                  {renderStepContent()}
+                </div>
               </div>
             </div>
-          </div>
+          )}
           <Footer
             onPrivacyClick={() => {
               window.history.pushState({ isPrivacy: true }, '', '/privacidad');
@@ -512,6 +615,7 @@ export default function App() {
               setShowTerms(true);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onVisaNavigate={handleVisaNavigate}
           />
         </>
       )}

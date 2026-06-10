@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Footer({ onPrivacyClick, onTermsClick }) {
+export default function Footer({ onPrivacyClick, onTermsClick, onVisaNavigate }) {
   const currentYear = new Date().getFullYear();
 
   // Prevents jumping to the top of the page for dummy links
@@ -19,7 +19,7 @@ export default function Footer({ onPrivacyClick, onTermsClick }) {
               <span className="ln">Visazo <strong>Pro</strong></span>
             </div>
             <p className="footer-desc">
-              Diagnóstico inteligente y asesoría consular de alto nivel para asegurar el éxito de tu visa americana.
+              Visazo Pro: Diagnóstico inteligente y asesoría consular de alto nivel para asegurar el éxito de tu visa americana.
             </p>
           </div>
 
@@ -28,22 +28,35 @@ export default function Footer({ onPrivacyClick, onTermsClick }) {
             <h4 className="footer-title">Visas Americanas</h4>
             <ul className="footer-links">
               <li>
-                <a href="#turismo" onClick={handleDummyClick}>
+                <a 
+                  href="/visas/turismo" 
+                  onClick={(e) => { e.preventDefault(); onVisaNavigate('turismo'); }}
+                >
                   Visa de Turismo B1/B2
                 </a>
               </li>
               <li>
-                <a href="#estudiante" onClick={handleDummyClick}>
+                <a 
+                  href="/visas/estudiante" 
+                  onClick={(e) => { e.preventDefault(); onVisaNavigate('estudiante'); }}
+                >
                   Visa de Estudiante F1/M1
                 </a>
               </li>
               <li>
-                <a href="#trabajo" onClick={handleDummyClick}>
+                <a 
+                  href="/visas/trabajo" 
+                  onClick={(e) => { e.preventDefault(); onVisaNavigate('trabajo'); }}
+                >
                   Visa de Trabajo H1B/L1
                 </a>
               </li>
               <li>
-                <a href="#todas" onClick={handleDummyClick} className="highlight-link">
+                <a 
+                  href="/visas" 
+                  onClick={(e) => { e.preventDefault(); onVisaNavigate('hub'); }} 
+                  className="highlight-link"
+                >
                   Conoce todas las visas &rarr;
                 </a>
               </li>
@@ -112,7 +125,7 @@ export default function Footer({ onPrivacyClick, onTermsClick }) {
               &copy; {currentYear} Visazo Pro. Todos los derechos reservados.
             </p>
             <p className="location">
-              Bogotá, Colombia.
+              <span className="loc-pin">📍</span> Bogotá, Colombia.
             </p>
           </div>
           <div className="footer-bottom-actions">
