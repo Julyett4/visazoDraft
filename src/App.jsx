@@ -25,6 +25,7 @@ import ContactPage from './components/ContactPage';
 import JobsPage from './components/JobsPage';
 import BlogIndexPage from './components/BlogIndexPage';
 import HelpCenterPage from './components/HelpCenterPage';
+import Header from './components/Header';
 
 
 // Helper for generating custom IDs
@@ -784,12 +785,68 @@ export default function App() {
     }
   }, [showPrivacy, showTerms, showPricing, showHowItWorks, showFeatures, visaRoute]);
 
+  const isDiagnosticInProgress = step !== 'welcome' && 
+    !showPrivacy && !showTerms && !showPricing && 
+    !showHowItWorks && !showFeatures && !showAbout && 
+    !showContact && !showJobs && !showBlog && !showHelp && 
+    !visaRoute;
+
+  const hideHeader = showPrivacy || showTerms;
+
   return (
     <>
       <div className="orb-wrapper">
         <div className="orb orb1"></div>
         <div className="orb orb2"></div>
       </div>
+
+      {!hideHeader && (
+        <Header
+          minimal={isDiagnosticInProgress}
+          onHomeClick={handleHomeClick}
+          onHowItWorksClick={() => {
+            window.history.pushState({ isHow: true }, '', '/como-funciona');
+            setShowPrivacy(false); setShowTerms(false); setShowPricing(false);
+            setShowHowItWorks(true); setShowFeatures(false); setShowAbout(false);
+            setShowContact(false); setShowJobs(false); setShowBlog(false); setShowHelp(false);
+            setVisaRoute(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onFeaturesClick={() => {
+            window.history.pushState({ isFeat: true }, '', '/caracteristicas');
+            setShowPrivacy(false); setShowTerms(false); setShowPricing(false);
+            setShowHowItWorks(false); setShowFeatures(true); setShowAbout(false);
+            setShowContact(false); setShowJobs(false); setShowBlog(false); setShowHelp(false);
+            setVisaRoute(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onPricingClick={() => {
+            window.history.pushState({ isPricing: true }, '', '/precios');
+            setShowPrivacy(false); setShowTerms(false); setShowPricing(true);
+            setShowHowItWorks(false); setShowFeatures(false); setShowAbout(false);
+            setShowContact(false); setShowJobs(false); setShowBlog(false); setShowHelp(false);
+            setVisaRoute(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onVisasHubClick={() => {
+            window.history.pushState({ isVisas: true }, '', '/visas');
+            setShowPrivacy(false); setShowTerms(false); setShowPricing(false);
+            setShowHowItWorks(false); setShowFeatures(false); setShowAbout(false);
+            setShowContact(false); setShowJobs(false); setShowBlog(false); setShowHelp(false);
+            setVisaRoute('hub');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onBlogClick={() => {
+            window.history.pushState({ isBlog: true }, '', '/blog');
+            setShowPrivacy(false); setShowTerms(false); setShowPricing(false);
+            setShowHowItWorks(false); setShowFeatures(false); setShowAbout(false);
+            setShowContact(false); setShowJobs(false); setShowBlog(true); setShowHelp(false);
+            setVisaRoute(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onStartDiagnostic={() => handleStartForVisa()}
+        />
+      )}
 
       {showPrivacy ? (
         <PrivacyPage onBack={handlePrivacyBack} />
@@ -839,13 +896,6 @@ export default function App() {
         />
       ) : (
         <div id="app">
-          <header id="hdr">
-            <div className="logo">
-              <div className="lm">VP</div>
-              <span className="ln">Visazo <strong>Pro</strong></span>
-            </div>
-            <div className="hbadge">🔒 Diagnóstico confidencial</div>
-          </header>
 
           <div id="card">
             {showProgressBar && (
