@@ -21,7 +21,7 @@ export default function Header({
     setMobileMenuOpen(false);
   };
   return (
-    <header className="w-full bg-transparent flex justify-center">
+    <header className="site-header w-full bg-transparent flex justify-center">
       {/* maxWidth de 1100px inline para garantizar la alineación matemática con el Footer */}
       <div 
         className="mx-auto flex h-20 w-full items-center justify-between px-6"
