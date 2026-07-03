@@ -1803,20 +1803,20 @@ body {
   font-size: 13px;
 }
 
-.meta-label {
+@utility meta-label {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.meta-value {
+@utility meta-value {
   color: #ffffff;
   font-weight: 600;
 }
 
-.visa-card-footer {
+@utility visa-card-footer {
   margin-top: 20px;
 }
 
-.visa-card-btn {
+@utility visa-card-btn {
   width: 100%;
   padding: 12.5px;
   background: rgba(255, 255, 255, 0.05);
@@ -1836,7 +1836,7 @@ body {
   transform: translateY(-1px);
 }
 
-.hub-cta-box {
+@utility hub-cta-box {
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.08) 100%);
   border: 1px solid rgba(37, 99, 235, 0.25);
   border-radius: 20px;
@@ -1847,14 +1847,14 @@ body {
   margin: 20px auto 0;
 }
 
-.hub-cta-title {
+@utility hub-cta-title {
   font-size: 22px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 12px;
 }
 
-.hub-cta-text {
+@utility hub-cta-text {
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.65);
   margin-bottom: 24px;
@@ -1862,7 +1862,7 @@ body {
 }
 
 /* VISA DETAIL STYLING */
-.visa-detail {
+@utility visa-detail {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
@@ -1870,12 +1870,12 @@ body {
   text-align: left;
 }
 
-.visa-detail-hero {
+@utility visa-detail-hero {
   margin-bottom: 40px;
   text-align: left;
 }
 
-.visa-detail-badge {
+@utility visa-detail-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1889,11 +1889,11 @@ body {
   margin-bottom: 20px;
 }
 
-.visa-emoji {
+@utility visa-emoji {
   font-size: 18px;
 }
 
-.visa-title-main {
+@utility visa-title-main {
   font-size: 40px;
   font-weight: 800;
   color: #ffffff;
@@ -1903,7 +1903,7 @@ body {
   text-align: left;
 }
 
-.visa-desc-main {
+@utility visa-desc-main {
   font-size: 17px;
   color: rgba(255, 255, 255, 0.65);
   line-height: 1.65;
@@ -1911,14 +1911,14 @@ body {
   text-align: left;
 }
 
-.visa-specs {
+@utility visa-specs {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 24px;
   margin-bottom: 50px;
 }
 
-.spec-card {
+@utility spec-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
@@ -1928,7 +1928,7 @@ body {
   gap: 16px;
 }
 
-.spec-icon {
+@utility spec-icon {
   font-size: 28px;
   background: rgba(255, 255, 255, 0.05);
   width: 50px;
@@ -1939,7 +1939,7 @@ body {
   border-radius: 10px;
 }
 
-.spec-info {
+@utility spec-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1948,34 +1948,34 @@ body {
   min-width: 0;
 }
 
-.spec-label {
+@utility spec-label {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: rgba(255, 255, 255, 0.4);
 }
 
-.spec-val {
+@utility spec-val {
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
 }
 
-.visa-sections-grid {
+@utility visa-sections-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 40px;
   margin-bottom: 50px;
 }
 
-.detail-section {
+@utility detail-section {
   background: rgba(10, 37, 64, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   padding: 32px;
 }
 
-.section-title {
+@utility section-title {
   font-size: 20px;
   font-weight: 800;
   color: #ffffff;
@@ -1984,7 +1984,7 @@ body {
   text-align: left;
 }
 
-.section-intro {
+@utility section-intro {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.45);
   margin-bottom: 24px;
@@ -1992,7 +1992,7 @@ body {
   text-align: left;
 }
 
-.req-list {
+@utility req-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -2001,14 +2001,14 @@ body {
   gap: 18px;
 }
 
-.req-item {
+@utility req-item {
   display: flex;
   gap: 12px;
   align-items: flex-start;
   text-align: left;
 }
 
-.check-box {
+@utility check-box {
   background: rgba(22, 163, 74, 0.12);
   border: 1px solid rgba(22, 163, 74, 0.3);
   color: var(--verde);
@@ -2024,7 +2024,7 @@ body {
   margin-top: 2px;
 }
 
-.req-text {
+@utility req-text {
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.55;
@@ -2032,7 +2032,7 @@ body {
   min-width: 0;
 }
 
-.timeline {
+@utility timeline {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -2049,14 +2049,14 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.timeline-item {
+@utility timeline-item {
   display: flex;
   gap: 20px;
   position: relative;
   z-index: 1;
 }
 
-.timeline-num {
+@utility timeline-num {
   background: #060f1e;
   border: 2px solid var(--blue2);
   color: #ffffff;
@@ -2071,7 +2071,7 @@ body {
   flex-shrink: 0;
 }
 
-.timeline-content {
+@utility timeline-content {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -2080,19 +2080,19 @@ body {
   min-width: 0;
 }
 
-.timeline-title {
+@utility timeline-title {
   font-size: 15.5px;
   font-weight: 700;
   color: #ffffff;
 }
 
-.timeline-text {
+@utility timeline-text {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.5;
 }
 
-.recommendations-box {
+@utility recommendations-box {
   background: rgba(234, 88, 12, 0.05);
   border: 1px solid rgba(234, 88, 12, 0.2);
   border-radius: 16px;
@@ -2101,25 +2101,25 @@ body {
   text-align: left;
 }
 
-.rec-header {
+@utility rec-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 16px;
 }
 
-.rec-icon {
+@utility rec-icon {
   font-size: 22px;
 }
 
-.rec-title {
+@utility rec-title {
   font-size: 17px;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.3px;
 }
 
-.rec-list {
+@utility rec-list {
   padding-left: 20px;
   display: flex;
   flex-direction: column;
@@ -2129,7 +2129,7 @@ body {
   line-height: 1.6;
 }
 
-.detail-cta-box {
+@utility detail-cta-box {
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(124, 58, 237, 0.08) 100%);
   border: 1px solid rgba(37, 99, 235, 0.3);
   border-radius: 20px;
@@ -2139,14 +2139,14 @@ body {
   margin-top: 10px;
 }
 
-.cta-box-title {
+@utility cta-box-title {
   font-size: 24px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 12px;
 }
 
-.cta-box-text {
+@utility cta-box-text {
   font-size: 15px;
   color: rgba(255, 255, 255, 0.65);
   margin-bottom: 24px;
@@ -2313,14 +2313,14 @@ body {
 }
 
 /* SEARCH BAR & DIRECTORY STYLES */
-.visa-search-box {
+@utility visa-search-box {
   width: 100%;
   max-width: 600px;
   margin: 0 auto 40px;
   position: relative;
 }
 
-.visa-search-input {
+@utility visa-search-input {
   width: 100%;
   padding: 14px 20px 14px 45px;
   background: rgba(10, 37, 64, 0.45);
@@ -2338,7 +2338,7 @@ body {
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
 }
 
-.search-icon-svg {
+@utility search-icon-svg {
   position: absolute;
   left: 18px;
   top: 50%;
@@ -2347,14 +2347,14 @@ body {
   pointer-events: none;
 }
 
-.directory-section {
+@utility directory-section {
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 50px;
   margin-top: 20px;
 }
 
-.directory-title {
+@utility directory-title {
   font-size: 24px;
   font-weight: 800;
   color: #ffffff;
@@ -2363,21 +2363,21 @@ body {
   text-align: left;
 }
 
-.directory-subtitle {
+@utility directory-subtitle {
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 30px;
   text-align: left;
 }
 
-.directory-grid {
+@utility directory-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
   width: 100%;
 }
 
-.directory-card {
+@utility directory-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
@@ -2395,14 +2395,14 @@ body {
   transform: translateY(-2px);
 }
 
-.directory-header {
+@utility directory-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
 }
 
-.directory-badge {
+@utility directory-badge {
   background: rgba(59, 130, 246, 0.15);
   border: 1px solid rgba(59, 130, 246, 0.3);
   color: var(--blue2);
@@ -2413,13 +2413,13 @@ body {
   text-transform: uppercase;
 }
 
-.directory-name {
+@utility directory-name {
   font-size: 15px;
   font-weight: 700;
   color: #ffffff;
 }
 
-.directory-purpose {
+@utility directory-purpose {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.45);
   line-height: 1.5;
@@ -2427,7 +2427,7 @@ body {
   flex-grow: 1;
 }
 
-.directory-btn {
+@utility directory-btn {
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.8);
@@ -2448,7 +2448,7 @@ body {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-.no-results {
+@utility no-results {
   grid-column: span 3;
   padding: 40px;
   text-align: center;
@@ -2458,7 +2458,7 @@ body {
   color: rgba(255, 255, 255, 0.45);
 }
 
-.no-results-btn {
+@utility no-results-btn {
   margin-top: 15px;
   padding: 8px 16px;
   font-size: 13.5px;
@@ -2491,22 +2491,22 @@ body {
 /* NEW VALUE PROPOSITION VIEWS STYLES */
 
 /* Color Utility Accents */
-.border-verde { border-color: rgba(22, 163, 74, 0.3); }
+@utility border-verde { border-color: rgba(22, 163, 74, 0.3); }
 .border-verde:hover { border-color: rgba(22, 163, 74, 0.7); }
-.border-blue { border-color: rgba(37, 99, 235, 0.3); }
+@utility border-blue { border-color: rgba(37, 99, 235, 0.3); }
 .border-blue:hover { border-color: rgba(37, 99, 235, 0.7); }
-.border-purple { border-color: rgba(124, 58, 237, 0.3); }
+@utility border-purple { border-color: rgba(124, 58, 237, 0.3); }
 .border-purple:hover { border-color: rgba(124, 58, 237, 0.7); }
 
-.mc-verde { background: linear-gradient(135deg, #16a34a, #15803d) !important; }
+@utility mc-verde { background: linear-gradient(135deg, #16a34a, #15803d) !important; }
 .mc-verde:hover { background: linear-gradient(135deg, #15803d, #166534) !important; }
-.mc-blue { background: linear-gradient(135deg, #2563eb, #1d4ed8) !important; }
+@utility mc-blue { background: linear-gradient(135deg, #2563eb, #1d4ed8) !important; }
 .mc-blue:hover { background: linear-gradient(135deg, #1d4ed8, #1e40af) !important; }
-.mc-purple { background: linear-gradient(135deg, #7c3aed, #6d28d9) !important; }
+@utility mc-purple { background: linear-gradient(135deg, #7c3aed, #6d28d9) !important; }
 .mc-purple:hover { background: linear-gradient(135deg, #6d28d9, #5b21b6) !important; }
 
 /* Pricing Toggle Switch */
-.pricing-toggle-container {
+@utility pricing-toggle-container {
   display: inline-flex;
   align-items: center;
   background: rgba(10, 37, 64, 0.6);
@@ -2517,7 +2517,7 @@ body {
   position: relative;
 }
 
-.pricing-toggle-btn {
+@utility pricing-toggle-btn {
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.6);
@@ -2536,7 +2536,7 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.pricing-toggle-switch {
+@utility pricing-toggle-switch {
   width: 50px;
   height: 26px;
   background: rgba(255, 255, 255, 0.1);
@@ -2547,7 +2547,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.switch-handle {
+@utility switch-handle {
   width: 20px;
   height: 20px;
   background: #ffffff;
@@ -2564,7 +2564,7 @@ body {
   background: #3b82f6;
 }
 
-.save-badge {
+@utility save-badge {
   position: absolute;
   top: -15px;
   right: -25px;
@@ -2580,7 +2580,7 @@ body {
 }
 
 /* Pricing Grid & Card */
-.pricing-grid-container {
+@utility pricing-grid-container {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
@@ -2589,7 +2589,7 @@ body {
   align-items: stretch;
 }
 
-.pricing-card {
+@utility pricing-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1.5px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
@@ -2620,7 +2620,7 @@ body {
   box-shadow: 0 25px 60px rgba(37, 99, 235, 0.22);
 }
 
-.recommended-badge {
+@utility recommended-badge {
   position: absolute;
   top: -12px;
   left: 50%;
@@ -2636,63 +2636,63 @@ body {
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
-.card-header-section {
+@utility card-header-section {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 24px;
 }
 
-.card-emoji {
+@utility card-emoji {
   font-size: 26px;
 }
 
-.card-title {
+@utility card-title {
   font-size: 19px;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.3px;
 }
 
-.card-price-section {
+@utility card-price-section {
   margin-bottom: 28px;
   min-height: 60px;
   display: flex;
   flex-direction: column;
 }
 
-.card-price-container {
+@utility card-price-container {
   display: flex;
   align-items: baseline;
 }
 
-.card-price {
+@utility card-price {
   font-size: 32px;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.8px;
 }
 
-.card-period {
+@utility card-period {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
   margin-left: 4px;
   font-weight: 500;
 }
 
-.card-equivalent {
+@utility card-equivalent {
   font-size: 12px;
   color: #3b82f6;
   margin-top: 4px;
   font-weight: 600;
 }
 
-.card-features-section {
+@utility card-features-section {
   flex-grow: 1;
   margin-bottom: 32px;
 }
 
-.features-title {
+@utility features-title {
   font-size: 12.5px;
   font-weight: 700;
   text-transform: uppercase;
@@ -2701,7 +2701,7 @@ body {
   margin-bottom: 16px;
 }
 
-.features-list {
+@utility features-list {
   list-style: none;
   padding: 0;
   display: flex;
@@ -2709,7 +2709,7 @@ body {
   gap: 12px;
 }
 
-.feature-item {
+@utility feature-item {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -2718,23 +2718,23 @@ body {
   line-height: 1.5;
 }
 
-.feature-check {
+@utility feature-check {
   color: #3b82f6;
   font-weight: 700;
   font-size: 14px;
   flex-shrink: 0;
 }
 
-.card-cta-section {
+@utility card-cta-section {
   width: 100%;
 }
 
-.cta-button-accent {
+@utility cta-button-accent {
   width: 100%;
 }
 
 /* Pricing Trust & FAQs */
-.pricing-trust-section {
+@utility pricing-trust-section {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
@@ -2748,38 +2748,38 @@ body {
   text-align: left;
 }
 
-.trust-item {
+@utility trust-item {
   display: flex;
   gap: 14px;
   align-items: flex-start;
 }
 
-.trust-icon {
+@utility trust-icon {
   font-size: 24px;
   flex-shrink: 0;
 }
 
-.trust-title {
+@utility trust-title {
   font-size: 14.5px;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 4px;
 }
 
-.trust-desc {
+@utility trust-desc {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.4;
 }
 
-.pricing-faq-section {
+@utility pricing-faq-section {
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 60px;
   margin-top: 20px;
 }
 
-.faq-main-title {
+@utility faq-main-title {
   font-size: 28px;
   font-weight: 800;
   color: #ffffff;
@@ -2788,7 +2788,7 @@ body {
   letter-spacing: -0.5px;
 }
 
-.faq-grid {
+@utility faq-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
@@ -2797,7 +2797,7 @@ body {
   text-align: left;
 }
 
-.faq-card {
+@utility faq-card {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
@@ -2809,25 +2809,25 @@ body {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.faq-question {
+@utility faq-question {
   font-size: 15.5px;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 10px;
 }
 
-.faq-answer {
+@utility faq-answer {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.55;
 }
 
-.pricing-cta-box {
+@utility pricing-cta-box {
   margin-top: 20px;
 }
 
 /* How It Works Timeline */
-.steps-timeline {
+@utility steps-timeline {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -2836,7 +2836,7 @@ body {
   position: relative;
 }
 
-.timeline-item {
+@utility timeline-item {
   display: flex;
   position: relative;
   margin-bottom: 30px;
@@ -2848,7 +2848,7 @@ body {
   margin-bottom: 0;
 }
 
-.timeline-connector {
+@utility timeline-connector {
   position: absolute;
   left: 27px;
   top: 54px;
@@ -2858,7 +2858,7 @@ body {
   z-index: 0;
 }
 
-.timeline-badge {
+@utility timeline-badge {
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -2878,13 +2878,13 @@ body {
   box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
 }
 
-.step-num {
+@utility step-num {
   font-size: 16px;
   font-weight: 800;
   color: #ffffff;
 }
 
-.timeline-card {
+@utility timeline-card {
   margin-left: 24px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -2901,37 +2901,37 @@ body {
   transform: translateX(4px);
 }
 
-.timeline-card-header {
+@utility timeline-card-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 12px;
 }
 
-.timeline-card-icon {
+@utility timeline-card-icon {
   font-size: 20px;
 }
 
-.timeline-card-title {
+@utility timeline-card-title {
   font-size: 17px;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.3px;
 }
 
-.timeline-card-desc {
+@utility timeline-card-desc {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.6;
 }
 
-.infographic-summary {
+@utility infographic-summary {
   width: 100%;
   max-width: 800px;
   margin: 0 auto 50px;
 }
 
-.info-box-summary {
+@utility info-box-summary {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -2942,30 +2942,30 @@ body {
   text-align: left;
 }
 
-.info-box-emoji {
+@utility info-box-emoji {
   font-size: 32px;
   flex-shrink: 0;
 }
 
-.info-box-content {
+@utility info-box-content {
   flex-grow: 1;
 }
 
-.info-box-title {
+@utility info-box-title {
   font-size: 16px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 6px;
 }
 
-.info-box-text {
+@utility info-box-text {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.55;
 }
 
 /* Features Grid */
-.features-showcase-grid {
+@utility features-showcase-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
@@ -2973,7 +2973,7 @@ body {
   margin: 40px 0 60px;
 }
 
-.feature-showcase-card {
+@utility feature-showcase-card {
   background: rgba(255, 255, 255, 0.015);
   border: 1.5px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
@@ -2990,36 +2990,36 @@ body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
-.feature-showcase-header {
+@utility feature-showcase-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
 }
 
-.feature-showcase-icon {
+@utility feature-showcase-icon {
   font-size: 24px;
   flex-shrink: 0;
 }
 
-.feature-showcase-title {
+@utility feature-showcase-title {
   font-size: 16px;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.3px;
 }
 
-.feature-showcase-desc {
+@utility feature-showcase-desc {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.55;
 }
 
-.flex-col-tablet {
+@utility flex-col-tablet {
   display: flex;
 }
 
-.summary-stat {
+@utility summary-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3032,7 +3032,7 @@ body {
   flex-shrink: 0;
 }
 
-.stat-num {
+@utility stat-num {
   font-size: 32px;
   font-weight: 800;
   color: #3b82f6;
@@ -3040,7 +3040,7 @@ body {
   margin-bottom: 4px;
 }
 
-.stat-lbl {
+@utility stat-lbl {
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -3131,7 +3131,7 @@ body {
 /* NEW INSTITUTIONAL PAGES STYLES */
 
 /* About Page Styles */
-.about-details-container {
+@utility about-details-container {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -3141,7 +3141,7 @@ body {
   text-align: left;
 }
 
-.about-main-card {
+@utility about-main-card {
   background: rgba(255, 255, 255, 0.015);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
@@ -3149,7 +3149,7 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-.about-section-title {
+@utility about-section-title {
   font-size: 22px;
   font-weight: 800;
   color: #ffffff;
@@ -3157,7 +3157,7 @@ body {
   letter-spacing: -0.5px;
 }
 
-.about-text {
+@utility about-text {
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.65;
@@ -3168,26 +3168,26 @@ body {
   margin-bottom: 0;
 }
 
-.about-split-grid {
+@utility about-split-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 
-.about-sub-card {
+@utility about-sub-card {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   padding: 28px;
 }
 
-.about-sub-icon {
+@utility about-sub-icon {
   font-size: 32px;
   display: block;
   margin-bottom: 12px;
 }
 
-.about-sub-title {
+@utility about-sub-title {
   font-size: 17px;
   font-weight: 800;
   color: #ffffff;
@@ -3195,20 +3195,20 @@ body {
   letter-spacing: -0.3px;
 }
 
-.about-sub-text {
+@utility about-sub-text {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.6;
 }
 
-.team-section-container {
+@utility team-section-container {
   width: 100%;
   max-width: 900px;
   margin: 0 auto 50px;
   text-align: center;
 }
 
-.team-main-title {
+@utility team-main-title {
   font-size: 26px;
   font-weight: 800;
   color: #ffffff;
@@ -3216,19 +3216,19 @@ body {
   letter-spacing: -0.5px;
 }
 
-.team-subtitle {
+@utility team-subtitle {
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 36px;
 }
 
-.team-grid {
+@utility team-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
-.team-card {
+@utility team-card {
   background: rgba(255, 255, 255, 0.015);
   border: 1.5px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
@@ -3243,7 +3243,7 @@ body {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
-.team-avatar-container {
+@utility team-avatar-container {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -3254,11 +3254,11 @@ body {
   margin: 0 auto 16px;
 }
 
-.team-avatar-emoji {
+@utility team-avatar-emoji {
   font-size: 32px;
 }
 
-.team-badge {
+@utility team-badge {
   display: inline-block;
   font-size: 10.5px;
   font-weight: 800;
@@ -3269,18 +3269,18 @@ body {
   margin-bottom: 12px;
 }
 
-.mb-verde { background: rgba(22, 163, 74, 0.15); color: #4ade80; }
-.mb-blue { background: rgba(37, 99, 235, 0.15); color: #60a5fa; }
-.mb-purple { background: rgba(124, 58, 237, 0.15); color: #c084fc; }
+@utility mb-verde { background: rgba(22, 163, 74, 0.15); color: #4ade80; }
+@utility mb-blue { background: rgba(37, 99, 235, 0.15); color: #60a5fa; }
+@utility mb-purple { background: rgba(124, 58, 237, 0.15); color: #c084fc; }
 
-.team-name {
+@utility team-name {
   font-size: 16px;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 2px;
 }
 
-.team-role {
+@utility team-role {
   font-size: 12.5px;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 600;
@@ -3288,14 +3288,14 @@ body {
   margin-bottom: 14px;
 }
 
-.team-bio {
+@utility team-bio {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.68);
   line-height: 1.55;
 }
 
 /* Contact Page Styles */
-.contact-container {
+@utility contact-container {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 32px;
@@ -3305,7 +3305,7 @@ body {
   text-align: left;
 }
 
-.contact-form-card {
+@utility contact-form-card {
   background: rgba(255, 255, 255, 0.015);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
@@ -3313,30 +3313,30 @@ body {
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
 }
 
-.contact-sidebar {
+@utility contact-sidebar {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.form-grid-2 {
+@utility form-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
-.input-error {
+@utility input-error {
   border-color: #dc2626 !important;
 }
 
-.form-field-error {
+@utility form-field-error {
   display: block;
   font-size: 11.5px;
   color: #f87171;
   margin-top: 6px;
 }
 
-.contact-form-error-banner {
+@utility contact-form-error-banner {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -3349,7 +3349,7 @@ body {
   font-size: 13.5px;
 }
 
-.contact-form-footer {
+@utility contact-form-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3359,7 +3359,7 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.form-disclaimer {
+@utility form-disclaimer {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.4;
@@ -3390,13 +3390,13 @@ body {
   color: rgba(255, 255, 255, 0.35);
 }
 
-.contact-submit-btn {
+@utility contact-submit-btn {
   flex-shrink: 0;
   min-width: 180px;
 }
 
 /* Loader Spinner */
-.btn-spinner {
+@utility btn-spinner {
   width: 16px;
   height: 16px;
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -3412,7 +3412,7 @@ body {
 }
 
 /* Contact Status Card */
-.contact-status-card {
+@utility contact-status-card {
   background: rgba(255, 255, 255, 0.015);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
@@ -3421,7 +3421,7 @@ body {
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
 }
 
-.status-badge {
+@utility status-badge {
   width: 72px;
   height: 72px;
   border-radius: 50%;
@@ -3438,7 +3438,7 @@ body {
   border: 2px solid rgba(22, 163, 74, 0.3);
 }
 
-.status-title {
+@utility status-title {
   font-size: 24px;
   font-weight: 800;
   color: #ffffff;
@@ -3446,14 +3446,14 @@ body {
   letter-spacing: -0.5px;
 }
 
-.status-text {
+@utility status-text {
   font-size: 15.5px;
   color: rgba(255, 255, 255, 0.85);
   margin-bottom: 16px;
   line-height: 1.6;
 }
 
-.status-subtext {
+@utility status-subtext {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 32px;
@@ -3463,21 +3463,21 @@ body {
   margin-right: auto;
 }
 
-.status-actions {
+@utility status-actions {
   display: flex;
   justify-content: center;
   gap: 16px;
 }
 
 /* Contact Sidebar Details */
-.sidebar-box {
+@utility sidebar-box {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   padding: 24px;
 }
 
-.sidebar-box-title {
+@utility sidebar-box-title {
   font-size: 15px;
   font-weight: 800;
   color: #ffffff;
@@ -3485,7 +3485,7 @@ body {
   letter-spacing: -0.3px;
 }
 
-.sidebar-item {
+@utility sidebar-item {
   display: flex;
   gap: 12px;
   margin-bottom: 16px;
@@ -3496,13 +3496,13 @@ body {
   margin-bottom: 0;
 }
 
-.sidebar-icon {
+@utility sidebar-icon {
   font-size: 20px;
   flex-shrink: 0;
   margin-top: 2px;
 }
 
-.sidebar-label {
+@utility sidebar-label {
   display: block;
   font-size: 11.5px;
   color: rgba(255, 255, 255, 0.4);
@@ -3512,7 +3512,7 @@ body {
   margin-bottom: 2px;
 }
 
-.sidebar-link {
+@utility sidebar-link {
   font-size: 14px;
   color: #3b82f6;
   text-decoration: none;
@@ -3526,7 +3526,7 @@ body {
   text-decoration: underline;
 }
 
-.sidebar-text {
+@utility sidebar-text {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.75);
   margin-bottom: 8px;
@@ -3536,20 +3536,20 @@ body {
   margin-bottom: 0;
 }
 
-.sidebar-text-muted {
+@utility sidebar-text-muted {
   font-size: 11.5px;
   color: rgba(255, 255, 255, 0.35);
   margin-top: 8px;
 }
 
 /* Careers / Jobs Page Styles */
-.jobs-section-container {
+@utility jobs-section-container {
   width: 100%;
   max-width: 900px;
   margin: 20px auto 50px;
 }
 
-.jobs-main-title {
+@utility jobs-main-title {
   font-size: 24px;
   font-weight: 800;
   color: #ffffff;
@@ -3558,13 +3558,13 @@ body {
   letter-spacing: -0.5px;
 }
 
-.jobs-grid {
+@utility jobs-grid {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.job-card {
+@utility job-card {
   background: rgba(255, 255, 255, 0.015);
   border: 1.5px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
@@ -3579,14 +3579,14 @@ body {
   transform: translateX(4px);
 }
 
-.job-card-header {
+@utility job-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
 }
 
-.job-type-pill {
+@utility job-type-pill {
   font-size: 11px;
   font-weight: 700;
   background: rgba(255, 255, 255, 0.05);
@@ -3596,13 +3596,13 @@ body {
   border-radius: 12px;
 }
 
-.job-location {
+@utility job-location {
   font-size: 12.5px;
   color: rgba(255, 255, 255, 0.4);
   font-weight: 500;
 }
 
-.job-title {
+@utility job-title {
   font-size: 18px;
   font-weight: 800;
   color: #ffffff;
@@ -3610,7 +3610,7 @@ body {
   letter-spacing: -0.3px;
 }
 
-.job-dept {
+@utility job-dept {
   font-size: 12px;
   color: #3b82f6;
   font-weight: 700;
@@ -3620,7 +3620,7 @@ body {
   margin-top: 4px;
 }
 
-.job-desc {
+@utility job-desc {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.68);
   line-height: 1.6;
@@ -3628,7 +3628,7 @@ body {
   margin-bottom: 20px;
 }
 
-.job-card-footer {
+@utility job-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -3636,32 +3636,32 @@ body {
   padding-top: 16px;
 }
 
-.job-salary {
+@utility job-salary {
   font-size: 13.5px;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.85);
 }
 
-.job-apply-btn {
+@utility job-apply-btn {
   padding: 8px 16px;
   font-size: 13px;
   flex: none;
 }
 
 /* Job Apply Modal details */
-.job-modal-meta {
+@utility job-modal-meta {
   text-align: center;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.5);
   margin: 12px 0 20px;
 }
 
-.job-modal-details {
+@utility job-modal-details {
   text-align: left;
   margin-bottom: 24px;
 }
 
-.job-details-subtitle {
+@utility job-details-subtitle {
   font-size: 13px;
   font-weight: 800;
   text-transform: uppercase;
@@ -3671,13 +3671,13 @@ body {
   margin-top: 16px;
 }
 
-.job-details-text {
+@utility job-details-text {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.6;
 }
 
-.job-details-list {
+@utility job-details-list {
   padding-left: 20px;
   list-style-type: disc;
   display: flex;
@@ -3691,7 +3691,7 @@ body {
   line-height: 1.55;
 }
 
-.job-application-instructions {
+@utility job-application-instructions {
   background: rgba(37, 99, 235, 0.05);
   border: 1px solid rgba(37, 99, 235, 0.15);
   border-radius: 12px;
@@ -3700,33 +3700,33 @@ body {
   margin-bottom: 24px;
 }
 
-.apply-instructions-title {
+@utility apply-instructions-title {
   font-size: 14px;
   font-weight: 800;
   color: #3b82f6;
   margin-bottom: 6px;
 }
 
-.apply-instructions-text {
+@utility apply-instructions-text {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
 }
 
-.apply-instructions-text-muted {
+@utility apply-instructions-text-muted {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.4);
   margin-top: 6px;
 }
 
-.apply-email-link {
+@utility apply-email-link {
   color: #60a5fa;
   text-decoration: underline;
   font-weight: 700;
 }
 
 /* Help Center Page Styles */
-.help-categories-grid {
+@utility help-categories-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
@@ -3735,7 +3735,7 @@ body {
   margin: 30px auto 40px;
 }
 
-.help-cat-card {
+@utility help-cat-card {
   background: rgba(255, 255, 255, 0.015);
   border: 1.5px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
@@ -3750,12 +3750,12 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.help-cat-icon {
+@utility help-cat-icon {
   font-size: 28px;
   margin-bottom: 12px;
 }
 
-.help-cat-title {
+@utility help-cat-title {
   font-size: 16px;
   font-weight: 800;
   color: #ffffff;
@@ -3763,20 +3763,20 @@ body {
   letter-spacing: -0.3px;
 }
 
-.help-cat-desc {
+@utility help-cat-desc {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.65);
   line-height: 1.5;
 }
 
-.help-accordion-container {
+@utility help-accordion-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
 }
 
-.accordion-item {
+@utility accordion-item {
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
@@ -3794,7 +3794,7 @@ body {
   background: rgba(59, 130, 246, 0.02);
 }
 
-.accordion-header {
+@utility accordion-header {
   width: 100%;
   background: none;
   border: none;
@@ -3808,7 +3808,7 @@ body {
   font-family: inherit;
 }
 
-.accordion-question {
+@utility accordion-question {
   font-size: 14.5px;
   font-weight: 700;
   color: #ffffff;
@@ -3816,7 +3816,7 @@ body {
   padding-right: 20px;
 }
 
-.accordion-arrow {
+@utility accordion-arrow {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.4);
   transition: transform 0.2s var(--ease);
@@ -3826,12 +3826,12 @@ body {
   color: #3b82f6;
 }
 
-.accordion-content {
+@utility accordion-content {
   padding: 0 24px 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.accordion-answer-text {
+@utility accordion-answer-text {
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.68);
   line-height: 1.6;
@@ -3899,7 +3899,7 @@ body {
   }
 }
 
-.animate-fadeIn {
+@utility animate-fadeIn {
   animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
