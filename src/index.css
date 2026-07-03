@@ -126,7 +126,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4px 20px;
+  padding: 0 4px 30px;
+}
+
+.site-header {
+  margin-bottom: 32px;
 }
 
 .logo {
