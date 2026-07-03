@@ -28,3 +28,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Documentación del Proyecto
+github_issues_templates.md
+guia_git.md
+propuestas_visazo.md

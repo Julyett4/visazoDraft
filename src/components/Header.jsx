@@ -21,7 +21,7 @@ export default function Header({
     setMobileMenuOpen(false);
   };
   return (
-    <header className="site-header w-full bg-transparent flex justify-center">
+    <header className="site-header relative z-50 w-full bg-transparent flex justify-center">
       {/* maxWidth de 1100px inline para garantizar la alineación matemática con el Footer */}
       <div 
         className="mx-auto flex h-20 w-full items-center justify-between px-6"
@@ -119,53 +119,54 @@ export default function Header({
         )}
       </div>
 
-      {/* MOBILE MENU PANEL */}
+      {/* MOBILE MENU PANEL (Subtle Full-Width Dropdown) */}
       {!minimal && mobileMenuOpen && (
-        <div className="md:hidden absolute top-20 left-0 w-full bg-[#060f1e]/98 backdrop-blur-lg border-b border-white/5 px-6 py-6 flex flex-col gap-4 animate-fadeIn shadow-2xl">
+        <div 
+          className="md:hidden absolute top-[78px] left-0 w-full z-50 bg-[#060f1e]/98 backdrop-blur-xl border-b border-white/10 px-6 pt-5 flex flex-col gap-3 shadow-2xl animate-fadeIn"
+          style={{ paddingBottom: '28px' }}
+        >
           <button 
             onClick={() => handleLinkClick(onHowItWorksClick)}
-            className="text-left text-base font-medium text-white/60 hover:text-white transition-colors py-2 border-b border-white/5 cursor-pointer"
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+            style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             ¿Cómo funciona?
           </button>
           <button 
             onClick={() => handleLinkClick(onFeaturesClick)}
-            className="text-left text-base font-medium text-white/60 hover:text-white transition-colors py-2 border-b border-white/5 cursor-pointer"
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+            style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             Características
           </button>
           <button 
             onClick={() => handleLinkClick(onPricingClick)}
-            className="text-left text-base font-medium text-white/60 hover:text-white transition-colors py-2 border-b border-white/5 cursor-pointer"
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+            style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             Precios
           </button>
           <button 
             onClick={() => handleLinkClick(onVisasHubClick)}
-            className="text-left text-base font-medium text-white/60 hover:text-white transition-colors py-2 border-b border-white/5 cursor-pointer"
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+            style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             Hub de Visas
           </button>
           <button 
             onClick={() => handleLinkClick(onBlogClick)}
-            className="text-left text-base font-medium text-white/60 hover:text-white transition-colors py-2 border-b border-white/5 cursor-pointer"
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+            style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             Blog
           </button>
           
-          <div className="flex flex-col gap-4 pt-2">
-            <div className="flex items-center gap-2 text-xs font-semibold text-white/40 px-1">
-              🔒 Diagnóstico 100% confidencial
-            </div>
+          <div className="pt-5 mt-3 border-t border-white/5">
             <button
               onClick={() => handleLinkClick(onStartDiagnostic)}
-              className="w-full text-center py-3 rounded-full text-sm font-semibold text-white cursor-pointer"
-              style={{
-                background: 'var(--blue)',
-                border: 'none'
-              }}
+              className="btn bpri bblk py-3.5 text-sm font-semibold focus:outline-none"
             >
-              Iniciar Diagnóstico
+              Comenzar diagnóstico &rarr;
             </button>
           </div>
         </div>
