@@ -46,7 +46,7 @@ export default function FeaturesPage({ onBack, onStartDiagnostic }) {
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <ol>
           <li>
-            <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }}>
+            <a href="#/" onClick={(e) => { e.preventDefault(); onBack(); }}>
               Inicio
             </a>
           </li>

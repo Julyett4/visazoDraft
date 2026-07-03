@@ -3,7 +3,7 @@ export default function TermsPage({ onBack }) {
     <div className="legal-page">
       {/* Header */}
       <header className="legal-header">
-        <a href="/" className="logo" onClick={(e) => { e.preventDefault(); onBack(); }}>
+        <a href="#/" className="logo" onClick={(e) => { e.preventDefault(); onBack(); }}>
           <div className="lm">VP</div>
           <span className="ln dark">Visazo <strong>Pro</strong></span>
         </a>

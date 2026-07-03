@@ -1,18 +1,6 @@
 import React from 'react';
 
-export default function Footer({ 
-  onPrivacyClick, 
-  onTermsClick, 
-  onVisaNavigate, 
-  onPricingClick, 
-  onHowItWorksClick, 
-  onFeaturesClick,
-  onBlogClick,
-  onHelpClick,
-  onAboutClick,
-  onContactClick,
-  onJobsClick
-}) {
+export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -35,35 +23,22 @@ export default function Footer({
             <h4 className="footer-title">Visas Americanas</h4>
             <ul className="footer-links">
               <li>
-                <a 
-                  href="/visas/turismo" 
-                  onClick={(e) => { e.preventDefault(); onVisaNavigate('turismo'); }}
-                >
+                <a href="#/visas/turismo">
                   Visa de Turismo B1/B2
                 </a>
               </li>
               <li>
-                <a 
-                  href="/visas/estudiante" 
-                  onClick={(e) => { e.preventDefault(); onVisaNavigate('estudiante'); }}
-                >
+                <a href="#/visas/estudiante">
                   Visa de Estudiante F1/M1
                 </a>
               </li>
               <li>
-                <a 
-                  href="/visas/trabajo" 
-                  onClick={(e) => { e.preventDefault(); onVisaNavigate('trabajo'); }}
-                >
+                <a href="#/visas/trabajo">
                   Visa de Trabajo H1B/L1
                 </a>
               </li>
               <li>
-                <a 
-                  href="/visas" 
-                  onClick={(e) => { e.preventDefault(); onVisaNavigate('hub'); }} 
-                  className="highlight-link"
-                >
+                <a href="#/visas" className="highlight-link">
                   Conoce todas las visas &rarr;
                 </a>
               </li>
@@ -75,26 +50,17 @@ export default function Footer({
             <h4 className="footer-title">Nuestros Productos</h4>
             <ul className="footer-links">
               <li>
-                <a 
-                  href="/precios" 
-                  onClick={(e) => { e.preventDefault(); onPricingClick(); }}
-                >
+                <a href="#/precios">
                   Planes y Precios
                 </a>
               </li>
               <li>
-                <a 
-                  href="/como-funciona" 
-                  onClick={(e) => { e.preventDefault(); onHowItWorksClick(); }}
-                >
+                <a href="#/como-funciona">
                   Cómo Funciona
                 </a>
               </li>
               <li>
-                <a 
-                  href="/caracteristicas" 
-                  onClick={(e) => { e.preventDefault(); onFeaturesClick(); }}
-                >
+                <a href="#/caracteristicas">
                   Características
                 </a>
               </li>
@@ -106,27 +72,27 @@ export default function Footer({
             <h4 className="footer-title">Recursos</h4>
             <ul className="footer-links">
               <li>
-                <a href="#blog" onClick={(e) => { e.preventDefault(); onBlogClick(); }}>
+                <a href="#/blog">
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#ayuda" onClick={(e) => { e.preventDefault(); onHelpClick(); }}>
+                <a href="#/ayuda">
                   Centro de Ayuda
                 </a>
               </li>
               <li>
-                <a href="#nosotros" onClick={(e) => { e.preventDefault(); onAboutClick(); }}>
+                <a href="#/nosotros">
                   Acerca de
                 </a>
               </li>
               <li>
-                <a href="#contacto" onClick={(e) => { e.preventDefault(); onContactClick(); }}>
+                <a href="#/contacto">
                   Contacto
                 </a>
               </li>
               <li>
-                <a href="#empleos" onClick={(e) => { e.preventDefault(); onJobsClick(); }}>
+                <a href="#/empleos">
                   Empleos
                 </a>
               </li>
@@ -145,22 +111,22 @@ export default function Footer({
             </p>
           </div>
           <div className="footer-bottom-actions">
-            <button 
-              type="button" 
-              className="footer-btn" 
-              onClick={onTermsClick}
+            <a 
+              href="#/terminos" 
+              className="footer-btn text-center block animate-fadeIn"
               aria-label="Términos y condiciones"
+              style={{ textDecoration: 'none' }}
             >
               Términos y Condiciones
-            </button>
-            <button 
-              type="button" 
-              className="footer-btn" 
-              onClick={onPrivacyClick}
+            </a>
+            <a 
+              href="#/privacidad" 
+              className="footer-btn text-center block animate-fadeIn"
               aria-label="Políticas de privacidad"
+              style={{ textDecoration: 'none' }}
             >
               Políticas de Privacidad
-            </button>
+            </a>
           </div>
         </div>
       </div>

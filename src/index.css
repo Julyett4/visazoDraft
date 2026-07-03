@@ -2183,6 +2183,7 @@ body {
     grid-template-columns: minmax(0, 1fr);
     gap: 30px;
   }
+}
 
 @media (max-width: 600px) {
   .footer-grid {

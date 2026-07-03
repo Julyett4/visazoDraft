@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { DB, PROG, PLANES } from './data/db';
 import { guardarEnSupabase } from './services/supabase';
 
@@ -55,78 +55,85 @@ export default function App() {
   const [renovAlertOpen, setRenovAlertOpen] = useState(false);
   const [activePlanKey, setActivePlanKey] = useState(null);
 
+  const [hasNavigated, setHasNavigated] = useState(false);
+  const isFirstRunRef = useRef(true);
+  const lastProcessedHashRef = useRef('');
+
   const [showPrivacy, setShowPrivacy] = useState(
-    window.location.pathname === '/privacidad' || 
-    window.location.hash === '#privacy' || 
-    window.location.hash === '#/privacidad'
+    window.location.hash === '#/privacidad' || 
+    window.location.hash === '#privacy' ||
+    window.location.pathname === '/privacidad'
   );
 
   const [showTerms, setShowTerms] = useState(
-    window.location.pathname === '/terminos' || 
-    window.location.hash === '#terms' || 
-    window.location.hash === '#/terminos'
+    window.location.hash === '#/terminos' || 
+    window.location.hash === '#terms' ||
+    window.location.pathname === '/terminos'
   );
 
   const [showPricing, setShowPricing] = useState(
-    window.location.pathname === '/precios' || 
-    window.location.hash === '#planes' || 
-    window.location.hash === '#/precios' ||
-    window.location.hash === '#/planes'
+    window.location.hash === '#/precios' || 
+    window.location.hash === '#/planes' || 
+    window.location.hash === '#planes' ||
+    window.location.pathname === '/precios'
   );
 
   const [showHowItWorks, setShowHowItWorks] = useState(
-    window.location.pathname === '/como-funciona' || 
-    window.location.hash === '#como-funciona' || 
-    window.location.hash === '#/como-funciona'
+    window.location.hash === '#/como-funciona' || 
+    window.location.hash === '#como-funciona' ||
+    window.location.pathname === '/como-funciona'
   );
 
   const [showFeatures, setShowFeatures] = useState(
-    window.location.pathname === '/caracteristicas' || 
-    window.location.hash === '#caracteristicas' || 
-    window.location.hash === '#/caracteristicas'
+    window.location.hash === '#/caracteristicas' || 
+    window.location.hash === '#caracteristicas' ||
+    window.location.pathname === '/caracteristicas'
   );
 
   const [showAbout, setShowAbout] = useState(
-    window.location.pathname === '/nosotros' || 
-    window.location.hash === '#nosotros' || 
-    window.location.hash === '#/nosotros'
+    window.location.hash === '#/nosotros' || 
+    window.location.hash === '#nosotros' ||
+    window.location.pathname === '/nosotros'
   );
 
   const [showContact, setShowContact] = useState(
-    window.location.pathname === '/contacto' || 
-    window.location.hash === '#contacto' || 
-    window.location.hash === '#/contacto'
+    window.location.hash === '#/contacto' || 
+    window.location.hash === '#contacto' ||
+    window.location.pathname === '/contacto'
   );
 
   const [showJobs, setShowJobs] = useState(
-    window.location.pathname === '/empleos' || 
-    window.location.hash === '#empleos' || 
-    window.location.hash === '#/empleos'
+    window.location.hash === '#/empleos' || 
+    window.location.hash === '#empleos' ||
+    window.location.pathname === '/empleos'
   );
 
   const [showBlog, setShowBlog] = useState(
-    window.location.pathname === '/blog' || 
-    window.location.hash === '#blog' || 
-    window.location.hash === '#/blog'
+    window.location.hash === '#/blog' || 
+    window.location.hash === '#blog' ||
+    window.location.pathname === '/blog'
   );
 
   const [showHelp, setShowHelp] = useState(
-    window.location.pathname === '/ayuda' || 
-    window.location.hash === '#ayuda' || 
-    window.location.hash === '#/ayuda'
+    window.location.hash === '#/ayuda' || 
+    window.location.hash === '#ayuda' ||
+    window.location.pathname === '/ayuda'
   );
 
   const getVisaRouteFromUrl = () => {
     const path = window.location.pathname;
     const hash = window.location.hash;
-    if (path === '/visas') return 'hub';
-    if (path === '/visas/turismo') return 'turismo';
-    if (path === '/visas/estudiante') return 'estudiante';
-    if (path === '/visas/trabajo') return 'trabajo';
+    
+    // Whitelist check for visa routes
     if (hash === '#visas' || hash === '#/visas') return 'hub';
     if (hash === '#visas/turismo' || hash === '#/visas/turismo') return 'turismo';
     if (hash === '#visas/estudiante' || hash === '#/visas/estudiante') return 'estudiante';
     if (hash === '#visas/trabajo' || hash === '#/visas/trabajo') return 'trabajo';
+    
+    if (path === '/visas') return 'hub';
+    if (path === '/visas/turismo') return 'turismo';
+    if (path === '/visas/estudiante') return 'estudiante';
+    if (path === '/visas/trabajo') return 'trabajo';
     return null;
   };
 
@@ -134,58 +141,53 @@ export default function App() {
 
   useEffect(() => {
     const handleUrlChange = () => {
-      const isPriv = window.location.pathname === '/privacidad' || 
-                     window.location.hash === '#privacy' || 
-                     window.location.hash === '#/privacidad';
+      const currentHash = window.location.hash;
+      const currentPath = window.location.pathname;
+      
+      // De-duplicate events
+      const uniqueKey = `${currentPath}_${currentHash}`;
+      if (uniqueKey === lastProcessedHashRef.current) return;
+      lastProcessedHashRef.current = uniqueKey;
+
+      if (isFirstRunRef.current) {
+        isFirstRunRef.current = false;
+      } else {
+        setHasNavigated(true);
+      }
+
+      const isPriv = currentHash === '#/privacidad' || currentHash === '#privacy' || currentPath === '/privacidad';
       setShowPrivacy(isPriv);
 
-      const isTerms = window.location.pathname === '/terminos' || 
-                      window.location.hash === '#terms' || 
-                      window.location.hash === '#/terminos';
+      const isTerms = currentHash === '#/terminos' || currentHash === '#terms' || currentPath === '/terminos';
       setShowTerms(isTerms);
 
-      const isPricing = window.location.pathname === '/precios' || 
-                        window.location.hash === '#planes' || 
-                        window.location.hash === '#/precios' ||
-                        window.location.hash === '#/planes';
+      const isPricing = currentHash === '#/precios' || currentHash === '#/planes' || currentHash === '#planes' || currentPath === '/precios';
       setShowPricing(isPricing);
 
-      const isHow = window.location.pathname === '/como-funciona' || 
-                    window.location.hash === '#como-funciona' || 
-                    window.location.hash === '#/como-funciona';
+      const isHow = currentHash === '#/como-funciona' || currentHash === '#como-funciona' || currentPath === '/como-funciona';
       setShowHowItWorks(isHow);
 
-      const isFeat = window.location.pathname === '/caracteristicas' || 
-                     window.location.hash === '#caracteristicas' || 
-                     window.location.hash === '#/caracteristicas';
+      const isFeat = currentHash === '#/caracteristicas' || currentHash === '#caracteristicas' || currentPath === '/caracteristicas';
       setShowFeatures(isFeat);
 
-      const isAbout = window.location.pathname === '/nosotros' || 
-                      window.location.hash === '#nosotros' || 
-                      window.location.hash === '#/nosotros';
+      const isAbout = currentHash === '#/nosotros' || currentHash === '#nosotros' || currentPath === '/nosotros';
       setShowAbout(isAbout);
 
-      const isContact = window.location.pathname === '/contacto' || 
-                        window.location.hash === '#contacto' || 
-                        window.location.hash === '#/contacto';
+      const isContact = currentHash === '#/contacto' || currentHash === '#contacto' || currentPath === '/contacto';
       setShowContact(isContact);
 
-      const isJobs = window.location.pathname === '/empleos' || 
-                     window.location.hash === '#empleos' || 
-                     window.location.hash === '#/empleos';
+      const isJobs = currentHash === '#/empleos' || currentHash === '#empleos' || currentPath === '/empleos';
       setShowJobs(isJobs);
 
-      const isBlog = window.location.pathname === '/blog' || 
-                     window.location.hash === '#blog' || 
-                     window.location.hash === '#/blog';
+      const isBlog = currentHash === '#/blog' || currentHash === '#blog' || currentPath === '/blog';
       setShowBlog(isBlog);
 
-      const isHelp = window.location.pathname === '/ayuda' || 
-                     window.location.hash === '#ayuda' || 
-                     window.location.hash === '#/ayuda';
+      const isHelp = currentHash === '#/ayuda' || currentHash === '#ayuda' || currentPath === '/ayuda';
       setShowHelp(isHelp);
 
       setVisaRoute(getVisaRouteFromUrl());
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     window.addEventListener('popstate', handleUrlChange);
     window.addEventListener('hashchange', handleUrlChange);
@@ -196,102 +198,82 @@ export default function App() {
   }, []);
 
   const handlePrivacyBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowPrivacy(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handleTermsBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowTerms(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handlePricingBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowPricing(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handleHowItWorksBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowHowItWorks(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handleFeaturesBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowFeatures(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handleAboutBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowAbout(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handleContactBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowContact(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handleJobsBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowJobs(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handleBlogBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowBlog(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
   const handleHelpBack = () => {
-    const hasHistory = window.history.state !== null;
-    if (!hasHistory) {
-      window.history.pushState(null, '', '/');
-      setShowHelp(false);
-    } else {
+    if (hasNavigated) {
       window.history.back();
+    } else {
+      window.location.hash = '#/';
     }
   };
 
@@ -666,70 +648,30 @@ export default function App() {
 
   // Navigation callbacks for Visas Americanas
   const handleHomeClick = () => {
-    window.history.pushState(null, '', '/');
-    setVisaRoute(null);
-    setShowPrivacy(false);
-    setShowTerms(false);
-    setShowPricing(false);
-    setShowHowItWorks(false);
-    setShowFeatures(false);
-    setShowAbout(false);
-    setShowContact(false);
-    setShowJobs(false);
-    setShowBlog(false);
-    setShowHelp(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.location.hash === '#/' || window.location.hash === '') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.location.hash = '#/';
+    }
   };
 
   const handleHubClick = () => {
-    window.history.pushState(null, '', '/visas');
-    setVisaRoute('hub');
-    setShowPrivacy(false);
-    setShowTerms(false);
-    setShowPricing(false);
-    setShowHowItWorks(false);
-    setShowFeatures(false);
-    setShowAbout(false);
-    setShowContact(false);
-    setShowJobs(false);
-    setShowBlog(false);
-    setShowHelp(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.location.hash = '#/visas';
   };
 
   const handleVisaNavigate = (routeKey) => {
-    window.history.pushState(null, '', `/visas/${routeKey}`);
-    setVisaRoute(routeKey);
-    setShowPrivacy(false);
-    setShowTerms(false);
-    setShowPricing(false);
-    setShowHowItWorks(false);
-    setShowFeatures(false);
-    setShowAbout(false);
-    setShowContact(false);
-    setShowJobs(false);
-    setShowBlog(false);
-    setShowHelp(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.location.hash = `#/visas/${routeKey}`;
   };
 
   const handleStartForVisa = (category) => {
     setFd({ tipoTramite: category });
     setHistory([]);
     setStep('datos-personales');
-    setVisaRoute(null);
-    setShowPrivacy(false);
-    setShowTerms(false);
-    setShowPricing(false);
-    setShowHowItWorks(false);
-    setShowFeatures(false);
-    setShowAbout(false);
-    setShowContact(false);
-    setShowJobs(false);
-    setShowBlog(false);
-    setShowHelp(false);
-    window.history.pushState(null, '', '/');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (window.location.hash === '#/' || window.location.hash === '') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.location.hash = '#/';
+    }
   };
 
   // Dynamic SEO meta-tags updater
@@ -803,47 +745,6 @@ export default function App() {
       {!hideHeader && (
         <Header
           minimal={isDiagnosticInProgress}
-          onHomeClick={handleHomeClick}
-          onHowItWorksClick={() => {
-            window.history.pushState({ isHow: true }, '', '/como-funciona');
-            setShowPrivacy(false); setShowTerms(false); setShowPricing(false);
-            setShowHowItWorks(true); setShowFeatures(false); setShowAbout(false);
-            setShowContact(false); setShowJobs(false); setShowBlog(false); setShowHelp(false);
-            setVisaRoute(null);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onFeaturesClick={() => {
-            window.history.pushState({ isFeat: true }, '', '/caracteristicas');
-            setShowPrivacy(false); setShowTerms(false); setShowPricing(false);
-            setShowHowItWorks(false); setShowFeatures(true); setShowAbout(false);
-            setShowContact(false); setShowJobs(false); setShowBlog(false); setShowHelp(false);
-            setVisaRoute(null);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onPricingClick={() => {
-            window.history.pushState({ isPricing: true }, '', '/precios');
-            setShowPrivacy(false); setShowTerms(false); setShowPricing(true);
-            setShowHowItWorks(false); setShowFeatures(false); setShowAbout(false);
-            setShowContact(false); setShowJobs(false); setShowBlog(false); setShowHelp(false);
-            setVisaRoute(null);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onVisasHubClick={() => {
-            window.history.pushState({ isVisas: true }, '', '/visas');
-            setShowPrivacy(false); setShowTerms(false); setShowPricing(false);
-            setShowHowItWorks(false); setShowFeatures(false); setShowAbout(false);
-            setShowContact(false); setShowJobs(false); setShowBlog(false); setShowHelp(false);
-            setVisaRoute('hub');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          onBlogClick={() => {
-            window.history.pushState({ isBlog: true }, '', '/blog');
-            setShowPrivacy(false); setShowTerms(false); setShowPricing(false);
-            setShowHowItWorks(false); setShowFeatures(false); setShowAbout(false);
-            setShowContact(false); setShowJobs(false); setShowBlog(true); setShowHelp(false);
-            setVisaRoute(null);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
           onStartDiagnostic={() => handleStartForVisa()}
         />
       )}
@@ -921,149 +822,7 @@ export default function App() {
         </div>
       )}
 
-      <Footer
-        onPrivacyClick={() => {
-          window.history.pushState({ isPrivacy: true }, '', '/privacidad');
-          setShowPrivacy(true);
-          setShowTerms(false);
-          setShowPricing(false);
-          setShowHowItWorks(false);
-          setShowFeatures(false);
-          setShowAbout(false);
-          setShowContact(false);
-          setShowJobs(false);
-          setShowBlog(false);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onTermsClick={() => {
-          window.history.pushState({ isTerms: true }, '', '/terminos');
-          setShowPrivacy(false);
-          setShowTerms(true);
-          setShowPricing(false);
-          setShowHowItWorks(false);
-          setShowFeatures(false);
-          setShowAbout(false);
-          setShowContact(false);
-          setShowJobs(false);
-          setShowBlog(false);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onPricingClick={() => {
-          window.history.pushState({ isPricing: true }, '', '/precios');
-          setShowPrivacy(false);
-          setShowTerms(false);
-          setShowPricing(true);
-          setShowHowItWorks(false);
-          setShowFeatures(false);
-          setShowAbout(false);
-          setShowContact(false);
-          setShowJobs(false);
-          setShowBlog(false);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onHowItWorksClick={() => {
-          window.history.pushState({ isHow: true }, '', '/como-funciona');
-          setShowPrivacy(false);
-          setShowTerms(false);
-          setShowPricing(false);
-          setShowHowItWorks(true);
-          setShowFeatures(false);
-          setShowAbout(false);
-          setShowContact(false);
-          setShowJobs(false);
-          setShowBlog(false);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onFeaturesClick={() => {
-          window.history.pushState({ isFeat: true }, '', '/caracteristicas');
-          setShowPrivacy(false);
-          setShowTerms(false);
-          setShowPricing(false);
-          setShowHowItWorks(false);
-          setShowFeatures(true);
-          setShowAbout(false);
-          setShowContact(false);
-          setShowJobs(false);
-          setShowBlog(false);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onAboutClick={() => {
-          window.history.pushState({ isAbout: true }, '', '/nosotros');
-          setShowPrivacy(false);
-          setShowTerms(false);
-          setShowPricing(false);
-          setShowHowItWorks(false);
-          setShowFeatures(false);
-          setShowAbout(true);
-          setShowContact(false);
-          setShowJobs(false);
-          setShowBlog(false);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onContactClick={() => {
-          window.history.pushState({ isContact: true }, '', '/contacto');
-          setShowPrivacy(false);
-          setShowTerms(false);
-          setShowPricing(false);
-          setShowHowItWorks(false);
-          setShowFeatures(false);
-          setShowAbout(false);
-          setShowContact(true);
-          setShowJobs(false);
-          setShowBlog(false);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onJobsClick={() => {
-          window.history.pushState({ isJobs: true }, '', '/empleos');
-          setShowPrivacy(false);
-          setShowTerms(false);
-          setShowPricing(false);
-          setShowHowItWorks(false);
-          setShowFeatures(false);
-          setShowAbout(false);
-          setShowContact(false);
-          setShowJobs(true);
-          setShowBlog(false);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onBlogClick={() => {
-          window.history.pushState({ isBlog: true }, '', '/blog');
-          setShowPrivacy(false);
-          setShowTerms(false);
-          setShowPricing(false);
-          setShowHowItWorks(false);
-          setShowFeatures(false);
-          setShowAbout(false);
-          setShowContact(false);
-          setShowJobs(false);
-          setShowBlog(true);
-          setShowHelp(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onHelpClick={() => {
-          window.history.pushState({ isHelp: true }, '', '/ayuda');
-          setShowPrivacy(false);
-          setShowTerms(false);
-          setShowPricing(false);
-          setShowHowItWorks(false);
-          setShowFeatures(false);
-          setShowAbout(false);
-          setShowContact(false);
-          setShowJobs(false);
-          setShowBlog(false);
-          setShowHelp(true);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onVisaNavigate={handleVisaNavigate}
-      />
+      <Footer />
 
       {/* Loading Overlay */}
       <div id="loverlay" className={loading ? 'show' : ''}>
