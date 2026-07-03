@@ -9,12 +9,12 @@ export default function VisaDetail({ visa, onHomeClick, onHubClick, onStartDiagn
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <ol>
           <li>
-            <a href="/" onClick={(e) => { e.preventDefault(); onHomeClick(); }}>
+            <a href="#/" onClick={(e) => { e.preventDefault(); onHomeClick(); }}>
               Inicio
             </a>
           </li>
           <li>
-            <a href="/visas" onClick={(e) => { e.preventDefault(); onHubClick(); }}>
+            <a href="#/visas" onClick={(e) => { e.preventDefault(); onHubClick(); }}>
               Visas Americanas
             </a>
           </li>

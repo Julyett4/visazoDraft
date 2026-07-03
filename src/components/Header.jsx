@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 
 export default function Header({
   minimal = false,
-  onHomeClick,
-  onHowItWorksClick,
-  onFeaturesClick,
-  onPricingClick,
-  onVisasHubClick,
-  onBlogClick,
   onStartDiagnostic
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,6 +14,7 @@ export default function Header({
     if (callback) callback();
     setMobileMenuOpen(false);
   };
+
   return (
     <header className="site-header relative z-50 w-full bg-transparent flex justify-center">
       {/* maxWidth de 1100px inline para garantizar la alineación matemática con el Footer */}
@@ -29,49 +24,50 @@ export default function Header({
       >
         
         {/* LOGO (Consistente con Footer) */}
-        <div 
-          onClick={() => handleLinkClick(onHomeClick)} 
+        <a 
+          href="#/" 
+          onClick={() => setMobileMenuOpen(false)}
           className="logo cursor-pointer transition-transform hover:scale-[1.01]"
         >
           <div className="lm">VP</div>
           <span className="ln">Visazo <strong>Pro</strong></span>
-        </div>
+        </a>
 
         {/* NAVEGACIÓN EN CASO DE MODO COMPLETO */}
         {!minimal ? (
           <>
             {/* Desktop Navigation Menu (Consistente con los estilos de enlaces del Footer) */}
             <nav className="hidden md:flex items-center gap-8">
-              <button 
-                onClick={() => handleLinkClick(onHowItWorksClick)}
-                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200 cursor-pointer"
+              <a 
+                href="#/como-funciona"
+                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200"
               >
                 ¿Cómo funciona?
-              </button>
-              <button 
-                onClick={() => handleLinkClick(onFeaturesClick)}
-                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200 cursor-pointer"
+              </a>
+              <a 
+                href="#/caracteristicas"
+                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200"
               >
                 Características
-              </button>
-              <button 
-                onClick={() => handleLinkClick(onPricingClick)}
-                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200 cursor-pointer"
+              </a>
+              <a 
+                href="#/precios"
+                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200"
               >
                 Precios
-              </button>
-              <button 
-                onClick={() => handleLinkClick(onVisasHubClick)}
-                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200 cursor-pointer"
+              </a>
+              <a 
+                href="#/visas"
+                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200"
               >
                 Hub de Visas
-              </button>
-              <button 
-                onClick={() => handleLinkClick(onBlogClick)}
-                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200 cursor-pointer"
+              </a>
+              <a 
+                href="#/blog"
+                className="text-[14.5px] font-medium text-white/55 hover:text-white transition-colors duration-200"
               >
                 Blog
-              </button>
+              </a>
             </nav>
 
             {/* Desktop Action Buttons (Refinado sin el badge redundante para máxima limpieza) */}
@@ -125,46 +121,51 @@ export default function Header({
           className="md:hidden absolute top-[78px] left-0 w-full z-50 bg-[#060f1e]/98 backdrop-blur-xl border-b border-white/10 px-6 pt-5 flex flex-col gap-3 shadow-2xl animate-fadeIn"
           style={{ paddingBottom: '28px' }}
         >
-          <button 
-            onClick={() => handleLinkClick(onHowItWorksClick)}
-            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+          <a 
+            href="#/como-funciona"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold block"
             style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             ¿Cómo funciona?
-          </button>
-          <button 
-            onClick={() => handleLinkClick(onFeaturesClick)}
-            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+          </a>
+          <a 
+            href="#/caracteristicas"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold block"
             style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             Características
-          </button>
-          <button 
-            onClick={() => handleLinkClick(onPricingClick)}
-            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+          </a>
+          <a 
+            href="#/precios"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold block"
             style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             Precios
-          </button>
-          <button 
-            onClick={() => handleLinkClick(onVisasHubClick)}
-            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+          </a>
+          <a 
+            href="#/visas"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold block"
             style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             Hub de Visas
-          </button>
-          <button 
-            onClick={() => handleLinkClick(onBlogClick)}
-            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold cursor-pointer"
+          </a>
+          <a 
+            href="#/blog"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full text-center px-4 rounded-xl bg-transparent border border-white/25 text-white/80 active:bg-white/5 active:border-white focus:outline-none transition-all text-sm font-semibold block"
             style={{ background: 'transparent', paddingTop: '16px', paddingBottom: '16px' }}
           >
             Blog
-          </button>
+          </a>
           
           <div className="pt-5 mt-3 border-t border-white/5">
             <button
               onClick={() => handleLinkClick(onStartDiagnostic)}
-              className="btn bpri bblk py-3.5 text-sm font-semibold focus:outline-none"
+              className="btn bpri bblk py-3.5 text-sm font-semibold focus:outline-none cursor-pointer"
             >
               Comenzar diagnóstico &rarr;
             </button>

@@ -77,7 +77,7 @@ Aunque no tengas que ver al cónsul frente a frente, de igual forma debes enviar
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <ol>
           <li>
-            <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }}>
+            <a href="#/" onClick={(e) => { e.preventDefault(); onBack(); }}>
               Inicio
             </a>
           </li>

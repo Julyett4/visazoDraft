@@ -70,7 +70,7 @@ export default function HelpCenterPage({ onBack }) {
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <ol>
           <li>
-            <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }}>
+            <a href="#/" onClick={(e) => { e.preventDefault(); onBack(); }}>
               Inicio
             </a>
           </li>
@@ -181,7 +181,7 @@ export default function HelpCenterPage({ onBack }) {
         <button
           type="button"
           className="btn bpri bblk"
-          onClick={() => window.history.pushState({ isContact: true }, '', '/contacto')}
+          onClick={() => { window.location.hash = '#/contacto'; }}
         >
           Contactar Soporte Técnico &rarr;
         </button>

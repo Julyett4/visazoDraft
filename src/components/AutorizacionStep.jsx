@@ -35,14 +35,10 @@ export default function AutorizacionStep({ onNext, onBack }) {
           <span className="cht">
             Autorizo el tratamiento de mis datos personales conforme a la Ley 1581 de 2012 y la{' '}
             <a 
-              href="/privacidad" 
+              href="#/privacidad" 
               style={{ color: 'var(--blue)', textDecoration: 'underline', fontWeight: '600' }} 
               onClick={(e) => {
-                e.preventDefault();
                 e.stopPropagation();
-                window.history.pushState({ isPrivacy: true }, '', '/privacidad');
-                window.dispatchEvent(new PopStateEvent('popstate'));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
               política de privacidad de Visazo Pro

@@ -21,7 +21,7 @@ export default function VisasHub({ onNavigate, onHomeClick, onStartDiagnostic })
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <ol>
           <li>
-            <a href="/" onClick={(e) => { e.preventDefault(); onHomeClick(); }}>
+            <a href="#/" onClick={(e) => { e.preventDefault(); onHomeClick(); }}>
               Inicio
             </a>
           </li>
