@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { DB, PROG, PLANES } from './data/db';
-import { guardarEnSupabase } from './services/supabase';
+import { guardarEnFirebase, sincronizarLeadsOffline } from './services/firebase';
 
 // Helper components
 import WelcomeStep from './components/WelcomeStep';
@@ -194,6 +194,23 @@ export default function App() {
     return () => {
       window.removeEventListener('popstate', handleUrlChange);
       window.removeEventListener('hashchange', handleUrlChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Sincronizar leads guardados al iniciar la app (por si quedó alguno pendiente)
+    sincronizarLeadsOffline();
+
+    const handleOnline = () => {
+      console.log('🌐 Conexión detectada. Esperando 1.5s a que se estabilice la red...');
+      setTimeout(() => {
+        sincronizarLeadsOffline();
+      }, 1500);
+    };
+
+    window.addEventListener('online', handleOnline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
     };
   }, []);
 
@@ -496,8 +513,8 @@ export default function App() {
       }
     };
 
-    // Save lead to Supabase (does not block redirect)
-    await guardarEnSupabase(dataToSave);
+    // Save lead to Firebase (does not block redirect)
+    guardarEnFirebase(dataToSave);
     
     // Open payment link in a new tab to avoid GitHub Pages 404
     window.open(plan.link, '_blank', 'noopener,noreferrer');
@@ -727,12 +744,6 @@ export default function App() {
     }
   }, [showPrivacy, showTerms, showPricing, showHowItWorks, showFeatures, visaRoute]);
 
-  const isDiagnosticInProgress = step !== 'welcome' && 
-    !showPrivacy && !showTerms && !showPricing && 
-    !showHowItWorks && !showFeatures && !showAbout && 
-    !showContact && !showJobs && !showBlog && !showHelp && 
-    !visaRoute;
-
   const hideHeader = showPrivacy || showTerms;
 
   return (
@@ -744,7 +755,6 @@ export default function App() {
 
       {!hideHeader && (
         <Header
-          minimal={isDiagnosticInProgress}
           onStartDiagnostic={() => handleStartForVisa()}
         />
       )}

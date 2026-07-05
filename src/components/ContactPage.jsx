@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { enviarMensajeContacto } from '../services/contact';
+import { useState } from 'react';
+import { enviarMensajeContacto } from '../services/firebase';
 
 export default function ContactPage({ onBack }) {
   const [form, setForm] = useState({
