@@ -744,12 +744,6 @@ export default function App() {
     }
   }, [showPrivacy, showTerms, showPricing, showHowItWorks, showFeatures, visaRoute]);
 
-  const isDiagnosticInProgress = step !== 'welcome' && 
-    !showPrivacy && !showTerms && !showPricing && 
-    !showHowItWorks && !showFeatures && !showAbout && 
-    !showContact && !showJobs && !showBlog && !showHelp && 
-    !visaRoute;
-
   const hideHeader = showPrivacy || showTerms;
 
   return (
@@ -761,7 +755,6 @@ export default function App() {
 
       {!hideHeader && (
         <Header
-          minimal={isDiagnosticInProgress}
           onStartDiagnostic={() => handleStartForVisa()}
         />
       )}
