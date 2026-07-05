@@ -306,7 +306,11 @@ export default function App() {
   };
 
   const goBack = () => {
-    if (history.length === 0) return;
+    if (history.length === 0) {
+      setStep('welcome');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const prev = [...history];
     const target = prev.pop();
     setHistory(prev);
@@ -810,7 +814,16 @@ export default function App() {
 
           <div id="card">
             {showProgressBar && (
-              <div id="pbar-wrap" style={{ display: 'block' }}>
+              <div 
+                id="pbar-wrap" 
+                style={{ display: 'block' }}
+                role="progressbar"
+                aria-valuenow={progress.pct}
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuetext={`${progress.lbl}, ${progress.pct}%`}
+                aria-label="Progreso del diagnóstico"
+              >
                 <div className="ptrack">
                   <div 
                     className="pfill" 
@@ -818,7 +831,7 @@ export default function App() {
                     style={{ width: `${progress.pct}%` }}
                   ></div>
                 </div>
-                <div className="pmeta">
+                <div className="pmeta" aria-live="polite">
                   <span className="plbl" id="plbl">{progress.lbl}</span>
                   <span className="ppct" id="ppct">{progress.pct}%</span>
                 </div>
@@ -835,8 +848,14 @@ export default function App() {
       <Footer />
 
       {/* Loading Overlay */}
-      <div id="loverlay" className={loading ? 'show' : ''}>
-        <div className="spin"></div>
+      <div 
+        id="loverlay" 
+        className={loading ? 'show' : ''} 
+        role="status" 
+        aria-live="assertive" 
+        aria-busy={loading}
+      >
+        <div className="spin" aria-hidden="true"></div>
         <div className="ltxt">Calculando tu diagnóstico...</div>
         <div className="lstxt">Evaluando factores de riesgo consular. Por favor espera.</div>
       </div>

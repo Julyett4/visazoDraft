@@ -17,20 +17,25 @@ export default function AutorizacionStep({ onNext, onBack }) {
   return (
     <div className="step" id="step-autorizacion">
       <div className="ey">🔒 Último paso</div>
-      <h2 className="stitle">Autorización y confirmación</h2>
+      <h1 className="stitle">Autorización y confirmación</h1>
       <p className="ssub">Antes de generar tu diagnóstico, necesitamos tu autorización para el tratamiento responsable de tu información personal.</p>
       
       <div id="form-auth">
         <label 
           className={`chk ${datosChecked ? 'on' : ''}`} 
           id="lbl-chk-datos" 
-          onClick={() => setDatosChecked(!datosChecked)}
         >
           <input 
             type="checkbox" 
             id="chk-datos" 
             checked={datosChecked}
-            onChange={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              setDatosChecked(e.target.checked);
+              if (error) setError(false);
+            }}
+            aria-invalid={error && !datosChecked ? "true" : "false"}
+            aria-describedby={error && !datosChecked ? "err-auth-txt" : undefined}
+            required
           />
           <span className="cht">
             Autorizo el tratamiento de mis datos personales conforme a la Ley 1581 de 2012 y la{' '}
@@ -49,13 +54,18 @@ export default function AutorizacionStep({ onNext, onBack }) {
         <label 
           className={`chk ${discChecked ? 'on' : ''}`} 
           id="lbl-chk-disc" 
-          onClick={() => setDiscChecked(!discChecked)}
         >
           <input 
             type="checkbox" 
             id="chk-disc" 
             checked={discChecked}
-            onChange={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              setDiscChecked(e.target.checked);
+              if (error) setError(false);
+            }}
+            aria-invalid={error && !discChecked ? "true" : "false"}
+            aria-describedby={error && !discChecked ? "err-auth-txt" : undefined}
+            required
           />
           <span className="cht">
             Declaro entender que Visazo Pro no garantiza la aprobación de la visa y que este diagnóstico es de carácter orientativo.
@@ -63,9 +73,9 @@ export default function AutorizacionStep({ onNext, onBack }) {
         </label>
       </div>
 
-      <div className={`errmsg ${error ? 'show' : ''}`} id="err-auth">
+      <div className={`errmsg ${error ? 'show' : ''}`} id="err-auth" role="alert" aria-live="assertive">
         <span>⚠</span>
-        <span>Debes aceptar ambas condiciones para continuar.</span>
+        <span id="err-auth-txt">Debes aceptar ambas condiciones para continuar.</span>
       </div>
 
       <div className="snav">

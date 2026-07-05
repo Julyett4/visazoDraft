@@ -70,7 +70,7 @@ export default function ResultScreen({ sol, onOpenPlanModal, onReset }) {
       <div className="rw">
         <div className="rcirc cp">⭐</div>
         <div className="rpill pp">Renovación Perfecta</div>
-        <h2 className="rtitle">¡Excelente perfil para renovación!</h2>
+        <h1 className="rtitle">¡Excelente perfil para renovación!</h1>
         <p className="rdesc">Tu historial cumple todos los criterios para renovación sin entrevista. Tu expediente está en condiciones óptimas.</p>
         
         <div className="why-vp">
@@ -120,7 +120,7 @@ export default function ResultScreen({ sol, onOpenPlanModal, onReset }) {
       <div className="rw">
         <div className="rcirc cp">{current.i}</div>
         <div className="rpill pp">Solicitud Recibida</div>
-        <h2 className="rtitle">{current.t}</h2>
+        <h1 className="rtitle">{current.t}</h1>
         <p className="rdesc">{current.d}</p>
         
         <div className="why-vp">
@@ -149,7 +149,7 @@ export default function ResultScreen({ sol, onOpenPlanModal, onReset }) {
       <div className="rw">
         <div className="rcirc cv">✅</div>
         <div className="rpill pv">Alta Viabilidad</div>
-        <h2 className="rtitle">¡Perfil con alta probabilidad de éxito!</h2>
+        <h1 className="rtitle">¡Perfil con alta probabilidad de éxito!</h1>
         <div className="srow">
           <span className="slbl">Índice de riesgo consular:</span>
           <span className="sval sv">{score} pts</span>
@@ -176,7 +176,7 @@ export default function ResultScreen({ sol, onOpenPlanModal, onReset }) {
       <div className="rw">
         <div className="rcirc cn">⚠️</div>
         <div className="rpill pn">Viabilidad Media</div>
-        <h2 className="rtitle">Perfil con alertas detectadas</h2>
+        <h1 className="rtitle">Perfil con alertas detectadas</h1>
         <div className="srow">
           <span className="slbl">Índice de riesgo consular:</span>
           <span className="sval sn">{score} pts</span>
@@ -185,7 +185,7 @@ export default function ResultScreen({ sol, onOpenPlanModal, onReset }) {
         
         {hallazgos.length > 0 && (
           <div className="hbox">
-            <div className="hdr2">⚠️ Alertas detectadas en tu expediente</div>
+            <h2 className="hdr2">⚠️ Alertas detectadas en tu expediente</h2>
             {hallazgos.map((h, index) => (
               <div className="hrow" key={index}>
                 <div className="hdot"></div>
@@ -214,7 +214,7 @@ export default function ResultScreen({ sol, onOpenPlanModal, onReset }) {
     <div className="rw">
       <div className="rcirc cr">🚨</div>
       <div className="rpill pr">Alto Riesgo</div>
-      <h2 className="rtitle">Tu caso requiere asesoría especializada</h2>
+      <h1 className="rtitle">Tu caso requiere asesoría especializada</h1>
       <p className="rdesc">Tu expediente presenta factores de riesgo significativos que requieren una estrategia legal altamente específica.</p>
       
       <div className="rnote">
