@@ -139,7 +139,7 @@ export default function PricingPage({ onBack, onSelectPlan, onStartDiagnostic })
           >
             Primera Vez
           </button>
-          <div className="pricing-toggle-switch" onClick={() => setIsRenovacion(!isRenovacion)}>
+          <div className="pricing-toggle-switch" onClick={() => setIsRenovacion(!isRenovacion)} aria-hidden="true">
             <div className={`switch-handle ${isRenovacion ? 'annual' : ''}`}></div>
           </div>
           <button
@@ -176,14 +176,14 @@ export default function PricingPage({ onBack, onSelectPlan, onStartDiagnostic })
         <div className="trust-item">
           <span className="trust-icon">🔒</span>
           <div>
-            <h4 className="trust-title">Pago Único y Cifrado</h4>
+            <h3 className="trust-title">Pago Único y Cifrado</h3>
             <p className="trust-desc">No hay cargos recurrentes ni suscripciones mensuales. Todo se procesa de forma segura a través de MercadoPago.</p>
           </div>
         </div>
         <div className="trust-item">
           <span className="trust-icon">🛡️</span>
           <div>
-            <h4 className="trust-title">Garantía de Acompañamiento</h4>
+            <h3 className="trust-title">Garantía de Acompañamiento</h3>
             <p className="trust-desc">En planes Pro y Premium te acompañamos gratuitamente en un segundo intento si tu visa llega a ser negada.</p>
           </div>
         </div>

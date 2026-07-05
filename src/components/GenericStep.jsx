@@ -45,7 +45,7 @@ export default function GenericStep({
   return (
     <div className="step">
       <div className="ey">{stepBadge}</div>
-      <h2 className="stitle">{title}</h2>
+      <h1 className="stitle">{title}</h1>
       <p className="ssub">{subtitle}</p>
 
       {infoBanner && (
@@ -58,16 +58,24 @@ export default function GenericStep({
         {schema.map((field) => {
           const opts = dbOpciones[field.id] || [];
           const savedValue = answers[field.id];
+          const isFieldInvalid = error && (!savedValue || savedValue.trim() === '');
 
           if (field.tipo === 'textarea') {
             return (
               <div key={field.id} className="fg">
-                <label className="fl">{field.lbl} <span className="req">*</span></label>
+                <label className="fl" htmlFor={`txt-${field.id}`}>{field.lbl} <span className="req">*</span></label>
                 <textarea
                   className="fta"
+                  id={`txt-${field.id}`}
                   value={savedValue}
-                  onChange={(e) => handleFieldChange(field.id, e.target.value)}
+                  onChange={(e) => {
+                    handleFieldChange(field.id, e.target.value);
+                    if (error) setError(false);
+                  }}
                   placeholder="Escribe aquí..."
+                  aria-invalid={isFieldInvalid ? "true" : "false"}
+                  aria-describedby={isFieldInvalid ? "err-generic-txt" : undefined}
+                  required
                 />
               </div>
             );
@@ -81,7 +89,13 @@ export default function GenericStep({
                   className="fs"
                   id={`sel-${field.id}`}
                   value={savedValue}
-                  onChange={(e) => handleFieldChange(field.id, e.target.value)}
+                  onChange={(e) => {
+                    handleFieldChange(field.id, e.target.value);
+                    if (error) setError(false);
+                  }}
+                  aria-invalid={isFieldInvalid ? "true" : "false"}
+                  aria-describedby={isFieldInvalid ? "err-generic-txt" : undefined}
+                  required
                 >
                   <option value="">— Selecciona una opción —</option>
                   {opts.map((o) => (
@@ -94,9 +108,9 @@ export default function GenericStep({
         })}
       </div>
 
-      <div className={`errmsg ${error ? 'show' : ''}`}>
+      <div className={`errmsg ${error ? 'show' : ''}`} id="err-generic" role="alert" aria-live="assertive">
         <span>⚠</span>
-        <span>Por favor responde todas las preguntas.</span>
+        <span id="err-generic-txt">Por favor responde todas las preguntas.</span>
       </div>
 
       <div className="snav">

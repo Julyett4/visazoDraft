@@ -11,7 +11,8 @@
   --g200: #e2e8f0;
   --g300: #cbd5e1;
   --g400: #94a3b8;
-  --g500: #64748b;
+  --g500: #57687d;
+  --g600: #475569;
   --g700: #334155;
   --g900: #0f172a;
   --verde: #16a34a;
@@ -3902,6 +3903,201 @@ body {
 @utility animate-fadeIn {
   animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ==========================================================================
+   ACCESSIBILITY & A11Y STYLES (WCAG 2.1 AA Compliance)
+   ========================================================================== */
+
+/* Global Keyboard focus-visible Outline (No outline on mouse clicks, clear on Tab) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[role="switch"]:focus-visible {
+  outline: 2px solid var(--blue2) !important;
+  outline-offset: 2px !important;
+}
+
+/* Premium Rounded Focus for Wizard Card Selection */
+.cc input:focus-visible + .ci {
+  outline: 2px solid var(--blue) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* Premium Rounded Focus for Authorization Checkboxes */
+.chk:has(input:focus-visible) {
+  outline: 2px solid var(--blue) !important;
+  outline-offset: 2px !important;
+  border-color: var(--blue) !important;
+}
+
+/* Visual error border and background on invalid form inputs */
+.fi[aria-invalid="true"],
+.fs[aria-invalid="true"],
+.fta[aria-invalid="true"] {
+  border-color: var(--rojo) !important;
+  background-color: rgba(220, 38, 38, 0.02) !important;
+}
+
+/* Prefers Reduced Motion settings to disable dizzying animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  .orb, .orb1, .orb2, .spin {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Accessibility Toggle Switches & Dropdown Styles */
+.a11y-switch {
+  width: 38px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s var(--ease);
+  padding: 0;
+  display: block;
+}
+.a11y-switch:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.a11y-switch.active {
+  background: var(--blue) !important;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+}
+.a11y-switch-handle {
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.a11y-switch.active .a11y-switch-handle {
+  transform: translateX(18px);
+}
+
+/* Accessibility Custom Overrides for User Preferences */
+
+/* 1. Large Text Size Mode (Scales relative sizes globally) */
+.a11y-large-text {
+  font-size: 18.5px !important;
+}
+
+/* 2. Dyslexic-friendly font family loading & override */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/dist/woff2/OpenDyslexic-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+.a11y-dyslexic-font * {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', 'Arial', sans-serif !important;
+}
+
+/* 3. Underline Links Mode */
+.a11y-underline-links a {
+  text-decoration: underline !important;
+}
+
+/* 4. High Contrast Mode (Optimizes colors and boosts visibility) */
+.a11y-high-contrast {
+  filter: contrast(1.25) saturate(1.1);
+}
+.a11y-high-contrast :root {
+  --navy: #000000;
+  --primary: #020710;
+  --blue: #2563eb;
+  --blue2: #3b82f6;
+  --g50: #ffffff;
+  --g100: #f1f5f9;
+  --g200: #cbd5e1;
+  --g500: #1e293b;
+  --g700: #0f172a;
+  --g900: #000000;
+}
+
+/* 5. Grayscale Mode (Monochrome visual rendering) */
+.a11y-grayscale {
+  filter: grayscale(100%) !important;
+}
+
+/* 6. Text Spacing Mode (Improves word tracking - WCAG 1.4.12) */
+.a11y-text-spacing * {
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+  line-height: 1.65 !important;
+}
+
+/* 7. Highlight Interactives Mode (Bright, visible outlines on focusable items) */
+.a11y-highlight-interactives a,
+.a11y-highlight-interactives button,
+.a11y-highlight-interactives input,
+.a11y-highlight-interactives select,
+.a11y-highlight-interactives textarea,
+.a11y-highlight-interactives [role="button"],
+.a11y-highlight-interactives [role="radio"],
+.a11y-highlight-interactives [role="switch"] {
+  outline: 2px solid var(--blue2) !important;
+  outline-offset: 2.5px !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.75) !important;
+}
+
+/* 8. Pause Animations Mode (Sensory overload prevention) */
+.a11y-stop-animations *,
+.a11y-stop-animations *::before,
+.a11y-stop-animations *::after {
+  animation-duration: 0.001s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001s !important;
+  scroll-behavior: auto !important;
+}
+
+/* 9. Large Cursor Mode (200% size high-contrast cursor) */
+.a11y-large-cursor,
+.a11y-large-cursor * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="black" stroke-width="1.5"><path d="M4.5 3v15.25l4.5-4.5 2.5 5.5 2.5-1.15-2.5-5.5 5.25-.1z"/></svg>'), auto !important;
+}
+
+/* Custom Scrollbar for Accessibility dropdown scroll area */
+.a11y-dropdown div::-webkit-scrollbar {
+  width: 5px;
+}
+.a11y-dropdown div::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+}
+.a11y-dropdown div::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+.a11y-dropdown div::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
+
 
 
 
